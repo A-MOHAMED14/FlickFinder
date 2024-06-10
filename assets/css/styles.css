@@ -1,3 +1,10 @@
+:root {
+  --colour1: #212121;
+  --colour2: rgb(59, 59, 59);
+  --colour3: rgb(90, 223, 176);
+  --colour4: rgb(124, 124, 124);
+}
+
 /* UNIVERSAL STYLING */
 * {
   padding: 0;
@@ -10,16 +17,59 @@ body {
   font-size: 1.5rem;
   width: 100%;
   font-family: "Open Sans", sans-serif;
-  background-color: #212121;
+  background-color: var(--colour1);
   color: white;
 }
 
 /* HEADER STYLING */
 header {
   padding: 30px 0px 30px 100px;
-  background-color: rgb(59, 59, 59);
+  background-color: var(--colour1);
 }
 
 #title {
-  color: rgb(90, 223, 176);
+  color: var(--colour3);
+}
+
+/* SEARCH SECTION STYLING */
+#search-container {
+  width: 50%;
+  margin: 0px 25%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  background-color: var(--colour2);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+#filter-btn {
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.35rem;
+  border-radius: 7px;
+  margin-right: 30px;
+
+  background-color: var(--colour3);
+  color: var(--colour4);
+  font-weight: 600;
+}
+
+#search-field {
+  border: none;
+  padding: 10px;
+  font-size: 1.5rem;
+
+  background-color: var(--colour2);
+  color: white;
+}
+
+#search-btn {
+  border: none;
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-left: 30px;
+
+  background-color: var(--colour2);
+  color: var(--colour4);
 }
