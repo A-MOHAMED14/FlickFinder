@@ -33,8 +33,12 @@ header {
 
 /* SEARCH SECTION STYLING */
 #search-container {
-  width: 50%;
-  margin: 0px 25%;
+  display: flex;
+  justify-content: center;
+}
+
+#search-section {
+  width: 800px;
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
