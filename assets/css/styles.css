@@ -77,3 +77,23 @@ header {
   background-color: var(--colour2);
   color: var(--colour4);
 }
+
+/* TRENDING WEEK SECTION STYLING */
+#trending-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+#trending-section {
+  display: flex;
+  justify-content: center;
+  width: 1500px;
+}
+
+#trending-week {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
