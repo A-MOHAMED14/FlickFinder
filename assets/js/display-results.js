@@ -1,5 +1,6 @@
 // DOM elements
 const resultsEl = document.querySelector("#results");
+const searchFormEl = document.querySelector("#search-form");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
@@ -82,3 +83,30 @@ function displayResults(data) {
     );
   }
 }
+
+function handleSearchFormSubmit(event) {
+  event.preventDefault();
+
+  const searchInputVal = document.querySelector("#search-field").value;
+
+  console.log(searchInputVal, "<-----");
+
+  if (!searchInputVal) {
+    console.error("You need a search input value!");
+    return;
+  }
+
+  const queryString = `../search-results.html?query=${searchInputVal}`;
+
+  location.assign(queryString);
+  fetchMedia();
+}
+
+searchFormEl.addEventListener("submit", handleSearchFormSubmit);
+
+// let posterPathURL = `${TMDB_BASE_IMG_URL}${results[i].poster_path}`;
+
+// if (posterPathURL === null) {
+//   const placeholderImg = "../images/placeholder.jpg";
+//   posterPathURL = `${TMDB_BASE_IMG_URL}/${placeholderImg}`;
+// }
