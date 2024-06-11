@@ -95,3 +95,140 @@ header {
   flex-direction: column;
   margin: 0px 0px;
 }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1550px) {
+  #results-section {
+    width: 1000px;
+  }
+
+  /* #search-section {
+    width: 500px;
+    padding: 15px 20px;
+  }
+
+  #search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filter-btn {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+
+  #search-btn {
+    margin: 0px;
+  } */
+}
+
+@media (max-width: 1050px) {
+  header {
+    padding: 0;
+    margin-top: 30px;
+  }
+
+  header h1 {
+    text-align: center;
+  }
+
+  #results-section {
+    width: 700px;
+  }
+
+  #search-section {
+    width: 500px;
+    padding: 15px 20px;
+  }
+
+  #search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filter-btn {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+
+  #search-btn {
+    margin: 0px;
+  }
+}
+
+@media (max-width: 730px) {
+  header {
+    padding: 0;
+    margin-top: 30px;
+  }
+  header h1 {
+    text-align: center;
+  }
+
+  #results-section {
+    width: 500px;
+  }
+
+  #search-section {
+    width: 400px;
+    padding: 15px 20px;
+  }
+
+  #search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filter-btn {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+
+  #search-btn {
+    margin: 0px;
+  }
+}
+
+@media (max-width: 530px) {
+  header {
+    padding: 0;
+    margin-top: 30px;
+  }
+  header h1 {
+    text-align: center;
+    font-size: 2.1rem;
+  }
+
+  #results-section {
+    width: 450px;
+  }
+
+  #search-section {
+    width: 300px;
+    padding: 15px 20px;
+  }
+
+  #search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #search-field {
+    font-size: 1.2rem;
+  }
+
+  #filter-btn {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  #search-btn {
+    margin: 0px;
+    font-size: 1.2rem;
+  }
+}
