@@ -19,7 +19,7 @@ function handleSearchFormSubmit(event) {
     return;
   }
 
-  const queryString = `../search-results.html?q=${searchInputVal}`;
+  const queryString = `../search-results.html?query=${searchInputVal}`;
 
   location.assign(queryString);
 }
