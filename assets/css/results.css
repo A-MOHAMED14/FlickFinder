@@ -101,26 +101,6 @@ header {
   #results-section {
     width: 1000px;
   }
-
-  /* #search-section {
-    width: 500px;
-    padding: 15px 20px;
-  }
-
-  #search-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #filter-btn {
-    margin: 0px;
-    margin-bottom: 10px;
-  }
-
-  #search-btn {
-    margin: 0px;
-  } */
 }
 
 @media (max-width: 1050px) {

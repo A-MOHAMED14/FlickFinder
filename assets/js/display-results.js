@@ -103,10 +103,3 @@ function handleSearchFormSubmit(event) {
 }
 
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);
-
-// let posterPathURL = `${TMDB_BASE_IMG_URL}${results[i].poster_path}`;
-
-// if (posterPathURL === null) {
-//   const placeholderImg = "../images/placeholder.jpg";
-//   posterPathURL = `${TMDB_BASE_IMG_URL}/${placeholderImg}`;
-// }
