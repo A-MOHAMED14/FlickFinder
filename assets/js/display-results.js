@@ -45,24 +45,27 @@ function displayResults(data) {
     const searchedResultInfo = document.createElement("div");
 
     const searchedResultPoster = document.createElement("img");
-    const searchedResultTitle = document.createElement("h3");
+    const searchedResultTitleBtn = document.createElement("button");
     const searchedResultReleaseDate = document.createElement("p");
     const searchedResultOverview = document.createElement("p");
 
     searchedResultPoster.src = posterPathURL;
-    searchedResultTitle.textContent = title;
+    searchedResultTitleBtn.textContent = title;
+    searchedResultTitleBtn.dataset.mediaId = results[i].id;
     searchedResultReleaseDate.textContent = releaseDate;
     searchedResultOverview.textContent = overview;
 
     searchedResultImg.append(searchedResultPoster);
 
-    searchedResultInfo.append(searchedResultTitle);
+    searchedResultInfo.append(searchedResultTitleBtn);
     searchedResultInfo.append(searchedResultReleaseDate);
     searchedResultInfo.append(searchedResultOverview);
 
     resultContainerEl.append(searchedResultImg, searchedResultInfo);
 
     resultsEl.append(resultContainerEl);
+
+    // Apply styles to the results elements
 
     resultContainerEl.setAttribute(
       "style",
@@ -73,6 +76,12 @@ function displayResults(data) {
       "style",
       "height: 200px; border-radius: 5px"
     );
+
+    searchedResultTitleBtn.setAttribute(
+      "style",
+      "font-size: 1.75rem; background-color: rgb(59, 59, 59); border: none; color: white"
+    );
+
     searchedResultReleaseDate.setAttribute(
       "style",
       "margin: 10px 0px; color: grey; font-size: 1.25rem"
@@ -81,6 +90,11 @@ function displayResults(data) {
       "style",
       "font-size: 1.35rem; color: lightgrey "
     );
+
+    searchedResultTitleBtn.addEventListener("click", (event) => {
+      const uniqueId = event.target.dataset.mediaId;
+      console.log(event.target);
+    });
   }
 }
 
