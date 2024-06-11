@@ -1,27 +1,30 @@
 // DOM elements
+const searchFormEl = document.querySelector("#search-form");
 const trendingWeekEl = document.querySelector("#trending-week");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
-const title = "Peaky Blinders";
-const encondedTitle = encodeURIComponent(title);
-const MAX_TRENDING_MEDIA = 21;
 const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w200";
 
-// fetchMovie();
+function handleSearchFormSubmit(event) {
+  event.preventDefault();
 
-function fetchMovie() {
-  const apiURL = `${TMDB_API_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encondedTitle}`;
+  const searchInputVal = document.querySelector("#search-field").value;
 
-  fetch(apiURL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-    });
+  console.log(searchInputVal, "<-----");
+
+  if (!searchInputVal) {
+    console.error("You need a search input value!");
+    return;
+  }
+
+  const queryString = `../search-results.html?q=${searchInputVal}`;
+
+  location.assign(queryString);
 }
+
+searchFormEl.addEventListener("submit", handleSearchFormSubmit);
 
 fetchTrending();
 
