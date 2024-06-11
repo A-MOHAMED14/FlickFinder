@@ -1,0 +1,32 @@
+:root {
+  --colour1: #212121;
+  --colour2: rgb(59, 59, 59);
+  --colour3: rgb(90, 223, 176);
+  --colour4: rgb(124, 124, 124);
+}
+
+/* UNIVERSAL STYLING */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* BODY STYLING */
+body {
+  font-size: 1.5rem;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--colour1);
+  color: white;
+}
+
+/* HEADER STYLING */
+header {
+  padding: 30px 0px 30px 100px;
+  background-color: var(--colour1);
+}
+
+#title {
+  color: var(--colour3);
+}
