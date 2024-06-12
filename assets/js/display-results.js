@@ -93,7 +93,8 @@ function displayResults(data) {
 
     searchedResultTitleBtn.addEventListener("click", (event) => {
       const uniqueId = event.target.dataset.mediaId;
-      console.log(event.target);
+      // console.log(uniqueId);
+      handleMediaSelected(uniqueId);
     });
   }
 }
@@ -117,3 +118,10 @@ function handleSearchFormSubmit(event) {
 }
 
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);
+
+function handleMediaSelected(uniqueId) {
+  console.log(uniqueId, "<======");
+
+  const queryString = `../media-selected.html?external_source=${uniqueId}`;
+  location.assign(queryString);
+}
