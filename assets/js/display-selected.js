@@ -72,6 +72,7 @@ function displaySelectedMedia(data) {
   const dateReleasedEl = document.createElement("div");
   const genresEl = document.createElement("div");
   const overviewSectionEl = document.createElement("div");
+  const saveMediaEl = document.createElement("div");
 
   const titleEl = document.createElement("h2");
   const tagLineEl = document.createElement("p");
@@ -84,6 +85,7 @@ function displaySelectedMedia(data) {
   const languageEl = document.createElement("p");
   const overviewHeaderEl = document.createElement("h4");
   const overviewEl = document.createElement("p");
+  const saveBtnEl = document.createElement("button");
   const backdropImgEl = document.createElement("img");
   const posterImgEl = document.createElement("img");
 
@@ -103,6 +105,7 @@ function displaySelectedMedia(data) {
   overviewHeaderEl.textContent = "Overview";
   overviewEl.textContent = overview;
   languageEl.textContent = `Language: ${language}`;
+  saveBtnEl.textContent = "📌 Add to Watchlist";
 
   backdropImgEl.src = `${TMDB_BASE_IMG_URL}/${backdropPath}`;
   posterImgEl.src = `${TMDB_BASE_IMG_URL}/${posterPath}`;
@@ -121,6 +124,8 @@ function displaySelectedMedia(data) {
   overviewSectionEl.append(overviewHeaderEl);
   overviewSectionEl.append(overviewEl);
   overviewSectionEl.append(languageEl);
+  saveMediaEl.append(saveBtnEl);
+  overviewSectionEl.append(saveMediaEl);
 
   mediaInfoEl.append(dateReleasedEl);
   mediaInfoEl.append(genresEl);
@@ -161,5 +166,15 @@ function displaySelectedMedia(data) {
   languageEl.setAttribute(
     "style",
     "font-style: italic; font-size: 1.35rem; color: lightgrey"
+  );
+
+  saveMediaEl.setAttribute(
+    "style",
+    "display: flex; justify-content: flex-end; margin-top: 10px"
+  );
+
+  saveBtnEl.setAttribute(
+    "style",
+    "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
   );
 }
