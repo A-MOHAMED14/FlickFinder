@@ -157,4 +157,9 @@ function displaySelectedMedia(data) {
     "style",
     "font-size: 1.3rem; line-height: 1.6; margin-bottom: 40px"
   );
+
+  languageEl.setAttribute(
+    "style",
+    "font-style: italic; font-size: 1.35rem; color: lightgrey"
+  );
 }
