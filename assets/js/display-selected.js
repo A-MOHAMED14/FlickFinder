@@ -89,7 +89,7 @@ function displaySelectedMedia(data) {
 
   // Add content to the DOM elements
   titleEl.textContent = title;
-  releaseDateEl.textContent = `${releaseDate} (${country}) | ⭐${rating} | ${runtime} min`;
+  releaseDateEl.textContent = `${releaseDate} (${country}) | ⭐ ${rating} | ${runtime} min`;
 
   //   ratingEl.textContent = ` - ⭐${rating}`;
   //   runtimeEl.textContent = `${runtime}m`;
@@ -97,10 +97,10 @@ function displaySelectedMedia(data) {
   //   statusEl.textContent = status;
   //   countryEl.textContent = country;
 
-  genreEl.textContent = genre;
+  genreEl.textContent = `Genre: ${genre}`;
 
   tagLineEl.textContent = tagLine;
-  overviewHeaderEl.textContent = "OverView";
+  overviewHeaderEl.textContent = "Overview";
   overviewEl.textContent = overview;
   languageEl.textContent = `Language: ${language}`;
 
@@ -128,4 +128,33 @@ function displaySelectedMedia(data) {
 
   mediaEl.append(mediaPosterImg);
   mediaEl.append(mediaInfoEl);
+
+  // Apply styling to DOM elements
+  mediaPosterImg.setAttribute(
+    "style",
+    "margin-right: 50px; border: 5px solid rgb(90, 223, 176); border-radius: 7px; box-shadow: 3px 3px 5px white"
+  );
+
+  titleEl.setAttribute(
+    "style",
+    "margin-bottom: 15px; color: rgb(90, 223, 176);"
+  );
+  releaseDateEl.setAttribute(
+    "style",
+    "font-size: 1.2rem; color: lightgrey; margin-bottom: 15px"
+  );
+
+  genreEl.setAttribute("style", "margin-bottom: 50px");
+
+  tagLineEl.setAttribute(
+    "style",
+    "font-style: italic; color: lightgray; margin-bottom: 15px; font-size: 1.3rem"
+  );
+
+  overviewHeaderEl.setAttribute("style", "margin-bottom: 10px");
+
+  overviewEl.setAttribute(
+    "style",
+    "font-size: 1.3rem; line-height: 1.6; margin-bottom: 40px"
+  );
 }
