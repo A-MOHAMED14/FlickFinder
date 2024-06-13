@@ -7,7 +7,7 @@ const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
 
 const SearchQueryParam = document.location.search;
-const mediaId = SearchQueryParam.slice(17, SearchQueryParam.length);
+let mediaId = SearchQueryParam.slice(17, SearchQueryParam.length);
 console.log(mediaId, "<-----");
 
 const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
@@ -60,13 +60,14 @@ function displayRecommendations(data) {
     const contentEl = document.createElement("div");
 
     const posterEl = document.createElement("img");
-    const titleEl = document.createElement("p");
+    const titleEl = document.createElement("button");
     const ratingEl = document.createElement("p");
 
     // recommendationsHeaderEl.textContent = "Recommendations";
     posterEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
     posterEl.alt = title;
     titleEl.textContent = title;
+    titleEl.setAttribute("data-id", uniqueId);
     ratingEl.textContent = `⭐ ${rating}`;
 
     // Add content to the DOM elements
@@ -83,12 +84,23 @@ function displayRecommendations(data) {
     contentEl.setAttribute("style", "width: 190px;");
     titleEl.setAttribute(
       "style",
-      "text-align: center; font-size: 1.1rem; margin-top: 10px"
+      "text-align: center; font-size: 1.1rem; margin-top: 10px; background-color: #212121; color: white; border: none"
     );
     ratingEl.setAttribute(
       "style",
       "text-align: center; font-size: 1rem; margin-top: 10px; color: lightgrey"
     );
+
+    titleEl.addEventListener("click", (event) => {
+      console.log(event.target);
+      const uniqueId = event.target.getAttribute("data-id");
+      mediaId = uniqueId;
+
+      mediaEl.textContent = "";
+
+      fetchMediaDetails();
+      // displayRecommendations();
+    });
   }
 }
 
