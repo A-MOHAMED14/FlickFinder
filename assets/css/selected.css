@@ -52,6 +52,32 @@ header {
   margin-top: 50px;
 }
 
+/* RECOMMENDATIONS SECTION STYLING */
+#recommendations-container {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+#recommendations-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 3px solid white; */
+  width: 1500px;
+}
+
+#recommendations {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#header {
+  margin-bottom: 50px;
+  color: var(--colour4);
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 1540px) {
