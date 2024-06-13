@@ -11,8 +11,6 @@ console.log(mediaId, "<-----");
 
 const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
 
-fetchMediaDetails();
-
 function fetchMediaDetails() {
   const apiURL = `${TMDB_API_BASE_URL}/movie/${mediaId}?api_key=${TMDB_API_KEY}`;
 
@@ -21,12 +19,26 @@ function fetchMediaDetails() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       displaySelectedMedia(data);
     });
 }
 
-displaySelectedMedia();
+fetchMediaDetails();
+
+function fetchRecommendations() {
+  const apiURL = `${TMDB_API_BASE_URL}/movie/${mediaId}/recommendations?api_key=${TMDB_API_KEY}`;
+
+  fetch(apiURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+fetchRecommendations();
 
 function displaySelectedMedia(data) {
   const selectedMedia = data;
@@ -137,7 +149,7 @@ function displaySelectedMedia(data) {
   // Apply styling to DOM elements
   mediaPosterImg.setAttribute(
     "style",
-    "margin-right: 50px; border: 5px solid rgb(90, 223, 176); border-radius: 7px; box-shadow: 3px 3px 5px white"
+    "margin-right: 50px; border: 5px solid rgb(90, 223, 176); border-radius: 7px; box-shadow: 3px 3px 5px white; height: fit-content"
   );
 
   titleEl.setAttribute(
@@ -178,3 +190,5 @@ function displaySelectedMedia(data) {
     "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
   );
 }
+
+displaySelectedMedia();
