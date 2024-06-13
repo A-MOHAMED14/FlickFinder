@@ -43,17 +43,24 @@ nav {
   margin-right: 100px;
 }
 
-nav a {
-  color: var(--colour1);
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  padding: 7px 10px;
+#home-btn,
+#watchlist-btn {
+  background-color: var(--colour1);
+  border: none;
   background-color: var(--colour3);
+  color: var(--colour1);
+  font-size: 1.3rem;
+  padding: 7px 10px;
+  font-weight: bold;
   border-radius: 7px;
 }
 
-nav a:hover {
+nav #home-btn:hover {
+  background-color: var(--colour5);
+  color: white;
+}
+
+nav #watchlist-btn:hover {
   background-color: var(--colour5);
   color: white;
 }
