@@ -1,6 +1,7 @@
 // DOM elements
 const mediaEl = document.querySelector("#media");
 const recommendationsEl = document.querySelector("#recommendations");
+const watchlistBtnEl = document.querySelector("#watchlist-btn");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
@@ -155,10 +156,7 @@ function displaySelectedMedia(data) {
   const titleEl = document.createElement("h2");
   const tagLineEl = document.createElement("p");
   const releaseDateEl = document.createElement("p");
-  //   const ratingEl = document.createElement("p");
-  //   const statusEl = document.createElement("p");
-  //   const runtimeEl = document.createElement("p");
-  //   const countryEl = document.createElement("p");
+
   const genreEl = document.createElement("p");
   const languageEl = document.createElement("p");
   const overviewHeaderEl = document.createElement("h4");
@@ -170,12 +168,6 @@ function displaySelectedMedia(data) {
   // Add content to the DOM elements
   titleEl.textContent = title;
   releaseDateEl.textContent = `${releaseDate} (${country}) | ⭐ ${rating} | ${runtime} min`;
-
-  //   ratingEl.textContent = ` - ⭐${rating}`;
-  //   runtimeEl.textContent = `${runtime}m`;
-
-  //   statusEl.textContent = status;
-  //   countryEl.textContent = country;
 
   genreEl.textContent = `Genre: ${genre}`;
 
@@ -190,7 +182,6 @@ function displaySelectedMedia(data) {
 
   // append created elements to mediaEl
 
-  //   mediaBackdropImg.append(backdropImgEl); ****************************************************
   mediaPosterImg.append(posterImgEl);
 
   dateReleasedEl.append(titleEl);
@@ -255,8 +246,41 @@ function displaySelectedMedia(data) {
     "style",
     "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
   );
+
+  saveBtnEl.addEventListener("click", () => {
+    handleSaveBtn(mediaId);
+  });
 }
 
 displaySelectedMedia();
 
-// 290px; width: 190px;
+// Save the media ID to local storage and load the watchlist page
+function handleSaveBtn(mediaId) {
+  if (mediaId) {
+    let mediaArr = JSON.parse(localStorage.getItem("searchedmedia")) || [];
+    if (!mediaArr.includes(mediaId)) {
+      mediaArr.push(mediaId);
+      localStorage.setItem("searchedmedia", JSON.stringify(mediaArr));
+    } else {
+      console.log("Media ID already saved");
+    }
+  }
+
+  const queryString = `../watchlist.html`;
+  location.assign(queryString);
+}
+
+// watchlistBtnEl.addEventListener("click", viewWatchList);
+
+// function viewWatchList() {
+//   const queryString = `../watchlist.html?external_source=${mediaId}`;
+
+//   location.assign(queryString);
+// }
+
+// CREATE A NEW HTML FILE CALLED -  watchlist.html
+// USE LOCATION.ASSIGN TO LOAD THIS NEW HTML FILE AND SEND THE MEDIA ID TO THE NEW HTML
+
+// INSTEAD OF REDIRECTING TO THE NEW HTML FILE, MAYBE JUST STORE THE MEDIA ID TO LOCAL STORAGE
+// THEN USE ANTOHER FUNCTION TO DISPLAY THE SAVED MOVIES/TV SHOWS IN THE NEW FILE ?
+// MAYBE USE A NAV BAR BUTTON TO DISPLAY THE SAVED MOVIES/TV SHOWS?
