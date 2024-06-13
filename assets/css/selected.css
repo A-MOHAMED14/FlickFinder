@@ -3,6 +3,7 @@
   --colour2: rgb(59, 59, 59);
   --colour3: rgb(90, 223, 176);
   --colour4: rgb(124, 124, 124);
+  --colour5: rgb(50, 124, 98);
 }
 
 /* UNIVERSAL STYLING */
@@ -23,12 +24,38 @@ body {
 
 /* HEADER STYLING */
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   padding: 30px 0px 30px 100px;
   background-color: var(--colour1);
+  color: white;
 }
 
 #title {
   color: var(--colour3);
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  margin-right: 100px;
+}
+
+nav a {
+  color: var(--colour1);
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 7px 10px;
+  background-color: var(--colour3);
+  border-radius: 7px;
+}
+
+nav a:hover {
+  background-color: var(--colour5);
+  color: white;
 }
 
 /* MEDIA SECTION STYLING */
