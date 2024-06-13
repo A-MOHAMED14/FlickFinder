@@ -1,5 +1,6 @@
 // DOM elements
 const mediaEl = document.querySelector("#media");
+const recommendationsEl = document.querySelector("#recommendations");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
@@ -34,11 +35,64 @@ function fetchRecommendations() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
+      displayRecommendations(data);
     });
 }
 
 fetchRecommendations();
+
+function displayRecommendations(data) {
+  // Store required data into variables
+  console.log(data);
+  for (let i = 0; i < 5; i++) {
+    const recommendations = data.results;
+    const uniqueId = recommendations[i].id;
+
+    const title = recommendations[i].title;
+    const posterPathURL = recommendations[i].poster_path;
+    const rating = recommendations[i].vote_average;
+
+    // Create the DOM elements
+    const recommendationEl = document.createElement("div");
+
+    const posterImgEl = document.createElement("div");
+    const contentEl = document.createElement("div");
+
+    const posterEl = document.createElement("img");
+    const titleEl = document.createElement("p");
+    const ratingEl = document.createElement("p");
+
+    // recommendationsHeaderEl.textContent = "Recommendations";
+    posterEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
+    posterEl.alt = title;
+    titleEl.textContent = title;
+    ratingEl.textContent = `⭐ ${rating}`;
+
+    // Add content to the DOM elements
+    posterImgEl.append(posterEl);
+    contentEl.append(titleEl);
+    contentEl.append(ratingEl);
+
+    recommendationEl.append(posterImgEl);
+    recommendationEl.append(contentEl);
+
+    recommendationsEl.append(recommendationEl);
+
+    posterEl.setAttribute("style", "height: 275px; border-radius: 7px");
+    contentEl.setAttribute("style", "width: 190px;");
+    titleEl.setAttribute(
+      "style",
+      "text-align: center; font-size: 1.1rem; margin-top: 10px"
+    );
+    ratingEl.setAttribute(
+      "style",
+      "text-align: center; font-size: 1rem; margin-top: 10px; color: lightgrey"
+    );
+  }
+}
+
+displayRecommendations();
 
 function displaySelectedMedia(data) {
   const selectedMedia = data;
@@ -192,3 +246,5 @@ function displaySelectedMedia(data) {
 }
 
 displaySelectedMedia();
+
+// 290px; width: 190px;
