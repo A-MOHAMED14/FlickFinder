@@ -82,6 +82,7 @@ function displaySavedMedia() {
 
     watchlistEl.append(savedMediaEl);
 
+    savedMediaEl.setAttribute('style', 'margin-bottom: 60px')
     posterImgEl.setAttribute("style", "border-radius: 10px");
     savedMediaInfoEl.setAttribute(
       "style",
