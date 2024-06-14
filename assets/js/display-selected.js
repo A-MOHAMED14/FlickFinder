@@ -61,19 +61,19 @@ function displayRecommendations(data) {
     const contentEl = document.createElement("div");
 
     const posterEl = document.createElement("img");
-    const titleEl = document.createElement("button");
+    const titleBtnEl = document.createElement("button");
     const ratingEl = document.createElement("p");
 
     // recommendationsHeaderEl.textContent = "Recommendations";
     posterEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
     posterEl.alt = title;
-    titleEl.textContent = title;
-    titleEl.setAttribute("data-id", uniqueId);
+    titleBtnEl.textContent = title;
+    titleBtnEl.setAttribute("data-id", uniqueId);
     ratingEl.textContent = `⭐ ${rating}`;
 
     // Add content to the DOM elements
     posterImgEl.append(posterEl);
-    contentEl.append(titleEl);
+    contentEl.append(titleBtnEl);
     contentEl.append(ratingEl);
 
     recommendationEl.append(posterImgEl);
@@ -82,17 +82,20 @@ function displayRecommendations(data) {
     recommendationsEl.append(recommendationEl);
 
     posterEl.setAttribute("style", "height: 275px; border-radius: 7px");
-    contentEl.setAttribute("style", "width: 190px;");
-    titleEl.setAttribute(
+    contentEl.setAttribute(
       "style",
-      "text-align: center; font-size: 1.1rem; margin-top: 10px; background-color: #212121; color: white; border: none"
+      "width: 190px; display: flex; flex-direction: column"
+    );
+    titleBtnEl.setAttribute(
+      "style",
+      "text-align: cente; font-size: 1.1rem; margin-top: 10px; background-color: #212121; color: white; border: none"
     );
     ratingEl.setAttribute(
       "style",
       "text-align: center; font-size: 1rem; margin-top: 10px; color: lightgrey"
     );
 
-    titleEl.addEventListener("click", (event) => {
+    titleBtnEl.addEventListener("click", (event) => {
       console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
       mediaId = uniqueId;
@@ -161,6 +164,7 @@ function displaySelectedMedia(data) {
   const languageEl = document.createElement("p");
   const overviewHeaderEl = document.createElement("h4");
   const overviewEl = document.createElement("p");
+  const trailerBtnEl = document.createElement("button");
   const saveBtnEl = document.createElement("button");
   const backdropImgEl = document.createElement("img");
   const posterImgEl = document.createElement("img");
@@ -175,6 +179,7 @@ function displaySelectedMedia(data) {
   overviewHeaderEl.textContent = "Overview";
   overviewEl.textContent = overview;
   languageEl.textContent = `Language: ${language}`;
+  trailerBtnEl.textContent = "▶️ PLay trailer";
   saveBtnEl.textContent = "📌 Add to Watchlist";
 
   backdropImgEl.src = `${TMDB_BASE_IMG_URL}/${backdropPath}`;
@@ -193,6 +198,7 @@ function displaySelectedMedia(data) {
   overviewSectionEl.append(overviewHeaderEl);
   overviewSectionEl.append(overviewEl);
   overviewSectionEl.append(languageEl);
+  saveMediaEl.append(trailerBtnEl);
   saveMediaEl.append(saveBtnEl);
   overviewSectionEl.append(saveMediaEl);
 
@@ -242,6 +248,11 @@ function displaySelectedMedia(data) {
     "display: flex; justify-content: flex-end; margin-top: 10px"
   );
 
+  trailerBtnEl.setAttribute(
+    "style",
+    "margin-right: 20px;font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
+  );
+
   saveBtnEl.setAttribute(
     "style",
     "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
@@ -277,9 +288,6 @@ function handleSaveBtn(mediaId) {
 
 //   location.assign(queryString);
 // }
-
-// CREATE A NEW HTML FILE CALLED -  watchlist.html
-// USE LOCATION.ASSIGN TO LOAD THIS NEW HTML FILE AND SEND THE MEDIA ID TO THE NEW HTML
 
 // INSTEAD OF REDIRECTING TO THE NEW HTML FILE, MAYBE JUST STORE THE MEDIA ID TO LOCAL STORAGE
 // THEN USE ANTOHER FUNCTION TO DISPLAY THE SAVED MOVIES/TV SHOWS IN THE NEW FILE ?
