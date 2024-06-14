@@ -48,11 +48,11 @@ function displaySavedMedia() {
 
   for (let i = 0; i < responseArr.length; i++) {
     // store data to be displayed in to variables
-    const savedMedias = responseArr;
+    const savedMedia = responseArr[i];
 
-    const title = savedMedias[i].title;
-    const rating = savedMedias[i].vote_average;
-    const posterPathURL = savedMedias[i].poster_path;
+    const title = savedMedia.title;
+    const rating = savedMedia.vote_average;
+    const posterPathURL = savedMedia.poster_path;
 
     // Create DOM elements
     const savedMediaEl = document.createElement("div");
@@ -61,12 +61,13 @@ function displaySavedMedia() {
 
     const titleEl = document.createElement("h4");
     const ratingEl = document.createElement("p");
-    // const removeBtnEl = document.createElement("button");
+    const removeBtnEl = document.createElement("button");
     const posterImgEl = document.createElement("img");
 
     titleEl.textContent = title;
     ratingEl.textContent = `⭐ ${rating}`;
-    // removeBtnEl.textContent = "Remove";
+    removeBtnEl.textContent = "Remove";
+    removeBtnEl.setAttribute("data-id", savedMedia.id);
     posterImgEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
     posterImgEl.alt = title;
 
@@ -74,7 +75,7 @@ function displaySavedMedia() {
     savedMediaImgEl.append(posterImgEl);
     savedMediaInfoEl.append(titleEl);
     savedMediaInfoEl.append(ratingEl);
-    // savedMediaInfoEl.append(removeBtnEl);
+    savedMediaInfoEl.append(removeBtnEl);
 
     savedMediaEl.append(savedMediaImgEl);
     savedMediaEl.append(savedMediaInfoEl);
@@ -94,5 +95,31 @@ function displaySavedMedia() {
       "style",
       "color: grey; margin-top: 10px; font-size: 1.1rem"
     );
+
+    removeBtnEl.setAttribute(
+      "style",
+      "margin-top: 20px; padding: 5px 7px; font-weight: bold; color: black; background-color: rgb(90, 223, 176); border: none; border-radius: 5px "
+    );
+
+    removeBtnEl.addEventListener("click", () => {
+      let mediaIdArr = JSON.parse(localStorage.getItem("searchedmedia"));
+      const btnClickedId = removeBtnEl.getAttribute("data-id");
+
+      // Find the index of the mediaId in the array
+      const index = mediaIdArr.findIndex(
+        (id) => id.toString() === btnClickedId
+      );
+
+      if (index !== -1) {
+        // Remove the media ID from the array
+        mediaIdArr.splice(index, 1);
+
+        // Update local storage
+        localStorage.setItem("searchedmedia", JSON.stringify(mediaIdArr));
+
+        // Remove the media element from the DOM
+        savedMediaEl.remove();
+      }
+    });
   }
 }
