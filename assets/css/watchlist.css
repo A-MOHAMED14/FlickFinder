@@ -3,6 +3,7 @@
   --colour2: rgb(59, 59, 59);
   --colour3: rgb(90, 223, 176);
   --colour4: rgb(124, 124, 124);
+  --colour5: rgb(50, 124, 98);
 }
 
 /* UNIVERSAL STYLING */
@@ -23,12 +24,40 @@ body {
 
 /* HEADER STYLING */
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   padding: 30px 0px 30px 100px;
   background-color: var(--colour1);
+  color: white;
 }
 
 #title {
   color: var(--colour3);
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  margin-right: 50px;
+}
+
+#home-btn {
+  background-color: var(--colour1);
+  border: none;
+  background-color: var(--colour3);
+  color: var(--colour1);
+  font-size: 1.3rem;
+  padding: 7px 10px;
+  font-weight: bold;
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+nav #home-btn:hover {
+  background-color: var(--colour5);
+  color: white;
 }
 
 /* WATCHLIST STYLING */
