@@ -30,3 +30,27 @@ header {
 #title {
   color: var(--colour3);
 }
+
+/* WATCHLIST STYLING */
+#watchlist-container {
+  display: flex;
+  justify-content: center;
+}
+
+#watchlist-section {
+  /* border: 3px solid whitesmoke; */
+  width: 1500px;
+}
+
+#watchlist {
+  display: flex;
+  justify-content: space-between;
+}
+
+#watchlist-header {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px 100px;
+  text-shadow: 2px 2px 3px var(--colour3);
+  font-size: 1.75rem;
+}
