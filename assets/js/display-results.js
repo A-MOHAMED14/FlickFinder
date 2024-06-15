@@ -45,19 +45,21 @@ function displayResults(data) {
     const searchedResultInfo = document.createElement("div");
 
     const searchedResultPoster = document.createElement("img");
-    const searchedResultTitleBtn = document.createElement("button");
+    const searchedResultTitleEl = document.createElement("p");
     const searchedResultReleaseDate = document.createElement("p");
     const searchedResultOverview = document.createElement("p");
+    const viewBtnEl = document.createElement("button");
+
+    searchedResultTitleEl.setAttribute("data-id", results[i].id);
 
     searchedResultPoster.src = posterPathURL;
-    searchedResultTitleBtn.textContent = title;
-    searchedResultTitleBtn.dataset.mediaId = results[i].id;
+    searchedResultTitleEl.textContent = title;
     searchedResultReleaseDate.textContent = releaseDate;
     searchedResultOverview.textContent = overview;
 
     searchedResultImg.append(searchedResultPoster);
 
-    searchedResultInfo.append(searchedResultTitleBtn);
+    searchedResultInfo.append(searchedResultTitleEl);
     searchedResultInfo.append(searchedResultReleaseDate);
     searchedResultInfo.append(searchedResultOverview);
 
@@ -77,10 +79,18 @@ function displayResults(data) {
       "height: 200px; border-radius: 5px"
     );
 
-    searchedResultTitleBtn.setAttribute(
+    searchedResultTitleEl.setAttribute(
       "style",
-      "font-size: 1.75rem; background-color: rgb(59, 59, 59); border: none; color: white"
+      "font-size: 1.75rem; font-weight: bold; background-color: rgb(59, 59, 59); border: none; color: rgb(90, 223, 176)"
     );
+
+    searchedResultTitleEl.addEventListener("mouseover", () => {
+      searchedResultTitleEl.style.color = "white";
+    });
+
+    searchedResultTitleEl.addEventListener("mouseout", () => {
+      searchedResultTitleEl.style.color = "rgb(90, 223, 176)";
+    });
 
     searchedResultReleaseDate.setAttribute(
       "style",
@@ -91,9 +101,10 @@ function displayResults(data) {
       "font-size: 1.35rem; color: lightgrey "
     );
 
-    searchedResultTitleBtn.addEventListener("click", (event) => {
-      const uniqueId = event.target.dataset.mediaId;
-      // console.log(uniqueId);
+    searchedResultTitleEl.addEventListener("click", (event) => {
+      console.log(event.target);
+      const uniqueId = event.target.getAttribute("data-id");
+
       handleMediaSelected(uniqueId);
     });
   }
@@ -125,3 +136,16 @@ function handleMediaSelected(uniqueId) {
   const queryString = `../media-selected.html?external_source=${uniqueId}`;
   location.assign(queryString);
 }
+
+// TODO:
+
+// FIGURE OUT A WAY WHEN ANY OF THE resultContainerEl'S ARE CLICKED...
+// ... THEN YOU ARE TAKEN TO THE MEDIA SELECTED PAGE
+
+// AND MAKE THE BACKGROUND CHANGE COLOUR WHEN THE MOUSE HOVERS OVER IT
+
+// USE THE SLICE METHOD, SO THAT ONCE A CERTAIN NUMBER OF CHARACTER...
+// ... HAVE BEEN REACHED WHEN THE PAGE SIZE IS REDUCED, THE ENTIRE...
+// ... OVERVIEW IS NOT SHOWN RATHER SOME TEXT AND THEN...
+
+// LASTLY FIGURE OUT THE MODAL AND PLAYING THE TRAILER USING YOUTUBES API
