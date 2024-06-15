@@ -87,6 +87,7 @@ header {
 
 #trending-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 1500px;
 }
@@ -97,9 +98,14 @@ header {
   flex-wrap: wrap;
 }
 
+#trending-header {
+  padding: 0 0 10px 30px;
+  color: var(--colour4);
+}
+
 /* RESPONSIVE DESIGN */
 
-@media (max-width: 779px) {
+@media (max-width: 780px) {
   header {
     padding: 0px;
     margin-top: 30px;
@@ -133,6 +139,11 @@ header {
 
   #trending-section {
     width: 600px;
+  }
+
+  #trending-header {
+    text-align: center;
+    margin: 30px 0 10px 0;
   }
 }
 
@@ -172,6 +183,11 @@ header {
 
   #trending-week {
     justify-content: center;
+  }
+
+  #trending-header {
+    text-align: center;
+    margin: 30px 0 10px 0;
   }
 }
 
