@@ -262,7 +262,19 @@ function displaySelectedMedia(data) {
     "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
   );
 
-  trailerBtnEl.addEventListener("click", playTheTrailer);
+  saveBtnEl.addEventListener("mouseover", () => {
+    saveBtnEl.style.color = "white";
+    saveBtnEl.style.backgroundColor = "rgb(50, 124, 98)";
+    saveBtnEl.style.boxShadow = "4px 4px 3px darkgrey";
+  });
+
+  saveBtnEl.addEventListener("mouseout", () => {
+    saveBtnEl.style.color = "black";
+    saveBtnEl.style.backgroundColor = "rgb(90, 223, 176)";
+    saveBtnEl.style.boxShadow = "4px 4px 3px lightgrey";
+  });
+
+  // trailerBtnEl.addEventListener("click", playTheTrailer(title));
 
   saveBtnEl.addEventListener("click", () => {
     handleSaveBtn(selectedMedia.id);
@@ -271,24 +283,26 @@ function displaySelectedMedia(data) {
 
 displaySelectedMedia();
 
-function playTheTrailer() {
-  // Create the dialog element if it doesn't already exist
-  if (!document.getElementById("dialog")) {
-    const dialogEl = document.createElement("div");
-    dialogEl.id = "dialog";
-    dialogEl.title = "Trailer";
-    // dialogEl.innerHTML = "<p>Trailer content goes here.</p>";
-    document.body.appendChild(dialogEl);
-  }
+// function playTheTrailer(title) {
+//   // // Create the dialog element if it doesn't already exist
+//   // if (!document.getElementById("dialog")) {
+//   //   const dialogEl = document.createElement("div");
+//   //   dialogEl.id = "dialog";
+//   //   dialogEl.title = "Trailer";
+//   //   // dialogEl.innerHTML = "<p>Trailer content goes here.</p>";
+//   //   document.body.appendChild(dialogEl);
+//   // }
 
-  // Initialize and open the dialog
-  $("#dialog").dialog({
-    autoOpen: true,
-    modal: true,
-  });
-}
+//   // // Initialize and open the dialog
+//   // $("#dialog").dialog({
+//   //   autoOpen: true,
+//   //   modal: true,
+//   // });
+//   console.log(title);
+// }
 
 // Save the media ID to local storage and load the watchlist page
+
 function handleSaveBtn(mediaId) {
   if (mediaId) {
     let mediaArr = JSON.parse(localStorage.getItem("searchedmedia")) || [];
@@ -304,15 +318,3 @@ function handleSaveBtn(mediaId) {
   const queryString = `../watchlist.html`;
   location.assign(queryString);
 }
-
-// watchlistBtnEl.addEventListener("click", viewWatchList);
-
-// function viewWatchList() {
-//   const queryString = `../watchlist.html?external_source=${mediaId}`;
-
-//   location.assign(queryString);
-// }
-
-// INSTEAD OF REDIRECTING TO THE NEW HTML FILE, MAYBE JUST STORE THE MEDIA ID TO LOCAL STORAGE
-// THEN USE ANTOHER FUNCTION TO DISPLAY THE SAVED MOVIES/TV SHOWS IN THE NEW FILE ?
-// MAYBE USE A NAV BAR BUTTON TO DISPLAY THE SAVED MOVIES/TV SHOWS?
