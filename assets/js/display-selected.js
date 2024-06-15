@@ -114,13 +114,15 @@ function displaySelectedMedia(data) {
   const selectedMedia = data;
 
   // Store data into variables
+
   const title = selectedMedia.title;
   const tagLine = selectedMedia.tagline;
   const releaseDate = selectedMedia.release_date;
   const rating = selectedMedia.vote_average;
-  const status = selectedMedia.status;
   const runtime = selectedMedia.runtime;
-  const country = selectedMedia.origin_country[0];
+  const country = selectedMedia.origin_country
+    ? selectedMedia.origin_country[0]
+    : "Unknown";
   const overview = selectedMedia.overview;
   const backdropPath = selectedMedia.backdrop_path;
   const posterPath = selectedMedia.poster_path;
@@ -146,8 +148,7 @@ function displaySelectedMedia(data) {
   const language = languagesArr.join(", ");
 
   //Create DOM elements
-  const mediaContainerEl = document.createElement("div");
-  const mediaBackdropImg = document.createElement("div");
+
   const mediaPosterImg = document.createElement("div");
   const mediaInfoEl = document.createElement("div");
 
@@ -179,7 +180,7 @@ function displaySelectedMedia(data) {
   overviewHeaderEl.textContent = "Overview";
   overviewEl.textContent = overview;
   languageEl.textContent = `Language: ${language}`;
-  trailerBtnEl.textContent = "▶️ PLay trailer";
+  trailerBtnEl.textContent = "▶️ Watch trailer";
   saveBtnEl.textContent = "📌 Add to Watchlist";
 
   backdropImgEl.src = `${TMDB_BASE_IMG_URL}/${backdropPath}`;
@@ -258,12 +259,31 @@ function displaySelectedMedia(data) {
     "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
   );
 
+  trailerBtnEl.addEventListener("click", playTheTrailer);
+
   saveBtnEl.addEventListener("click", () => {
-    handleSaveBtn(mediaId);
+    handleSaveBtn(selectedMedia.id);
   });
 }
 
 displaySelectedMedia();
+
+function playTheTrailer() {
+  // Create the dialog element if it doesn't already exist
+  if (!document.getElementById("dialog")) {
+    const dialogEl = document.createElement("div");
+    dialogEl.id = "dialog";
+    dialogEl.title = "Trailer";
+    // dialogEl.innerHTML = "<p>Trailer content goes here.</p>";
+    document.body.appendChild(dialogEl);
+  }
+
+  // Initialize and open the dialog
+  $("#dialog").dialog({
+    autoOpen: true,
+    modal: true,
+  });
+}
 
 // Save the media ID to local storage and load the watchlist page
 function handleSaveBtn(mediaId) {
@@ -274,6 +294,7 @@ function handleSaveBtn(mediaId) {
       localStorage.setItem("searchedmedia", JSON.stringify(mediaArr));
     } else {
       console.log("Media ID already saved");
+      return;
     }
   }
 
