@@ -213,6 +213,24 @@ function displaySelectedMedia(data) {
   mediaEl.append(mediaPosterImg);
   mediaEl.append(mediaInfoEl);
 
+  // RESPONSIVE DESIGN USING MEDIA QUERIES
+
+  // Create a CSS class for the media query
+  const style = document.createElement("style");
+  style.innerHTML = `
+@media (max-width: 1020px) {
+  .limited-overview::after {
+    content: '...';
+  }
+}
+
+@media (max-width: 850px) {
+  .responsive-title {
+    font-size: 1.5rem;
+}
+`;
+  document.head.appendChild(style);
+
   // Apply styling to DOM elements
   mediaPosterImg.setAttribute(
     "style",
@@ -223,6 +241,9 @@ function displaySelectedMedia(data) {
     "style",
     "margin-bottom: 15px; color: rgb(90, 223, 176);"
   );
+
+  titleEl.classList.add("responsive-title");
+
   releaseDateEl.setAttribute(
     "style",
     "font-size: 1.2rem; color: lightgrey; margin-bottom: 15px"
@@ -237,10 +258,48 @@ function displaySelectedMedia(data) {
 
   overviewHeaderEl.setAttribute("style", "margin-bottom: 10px");
 
+  // Apply character limit
+  function applyCharacterLimit(element, maxChars) {
+    const originalText = element.textContent;
+    if (originalText.length > maxChars) {
+      element.textContent = originalText.slice(0, maxChars);
+      element.classList.add("limited-overview");
+    }
+  }
+
+  // Update the overview text based on screen width
+  function updateOverviewText() {
+    const screenWidth = window.innerWidth;
+
+    // Adjust the character limit as needed
+    if (screenWidth <= 850) {
+      applyCharacterLimit(overviewEl, 70);
+    }
+
+    if (screenWidth <= 1020) {
+      applyCharacterLimit(overviewEl, 110);
+    }
+
+    // Restore the original text if necessary
+    if (screenWidth > 1020) {
+      overviewEl.textContent = overviewText;
+      overviewEl.classList.remove("limited-overview");
+    }
+  }
+
+  // Assume 'overviewText' is the original overview text
+  const overviewText = overviewEl.textContent;
+
   overviewEl.setAttribute(
     "style",
     "font-size: 1.3rem; line-height: 1.6; margin-bottom: 40px"
   );
+
+  // Apply character limit based on initial screen width
+  updateOverviewText();
+
+  // Update the overview text when the window is resized
+  window.addEventListener("resize", updateOverviewText);
 
   languageEl.setAttribute(
     "style",
