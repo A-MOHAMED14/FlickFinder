@@ -79,7 +79,6 @@ nav #watchlist-btn:hover {
 #media {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   background-color: var(--colour2);
   padding: 30px;
   border-radius: 10px;
@@ -162,6 +161,17 @@ nav #watchlist-btn:hover {
   }
 
   @media (max-width: 850px) {
+    #media-section {
+      width: 400px;
+    }
+
+    #media {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      margin-left: 10px;
+    }
+
     #recommendations-section {
       width: 400px;
     }
@@ -172,16 +182,23 @@ nav #watchlist-btn:hover {
   }
 
   @media (max-width: 620px) {
+    header h1 {
+      font-size: 2rem;
+    }
+
+    #home-btn,
+    #watchlist-btn {
+      padding: 5px 50px;
+      font-size: 1rem;
+    }
+
     #recommendations-section {
       width: 300px;
     }
 
     #recommendations {
       justify-content: center;
-    }
-
-    #header {
-      text-align: center;
+      gap: 50px;
     }
   }
 }
