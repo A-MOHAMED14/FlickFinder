@@ -5,7 +5,10 @@ const watchlistBtnEl = document.querySelector("#watchlist-btn");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
+const YT_API_KEY = "AIzaSyBkhpBJMBBVKSvH7G7xVFJjex3Q5bZc6o8";
+
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
+const YT_API_BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 const SearchQueryParam = document.location.search;
 let mediaId = SearchQueryParam.slice(17, SearchQueryParam.length);
