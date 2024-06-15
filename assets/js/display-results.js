@@ -96,11 +96,62 @@ function displayResults(data) {
       "style",
       "margin: 10px 0px; color: grey; font-size: 1.25rem"
     );
+
+    // Create a CSS class for the media query
+    const style = document.createElement("style");
+    style.innerHTML = `
+  @media (max-width: 800px) {
+    .limited-overview::after {
+      content: '...';
+    }
+  }
+`;
+    document.head.appendChild(style);
+
+    // Apply character limit
+    function applyCharacterLimit(element, maxChars) {
+      const originalText = element.textContent;
+      if (originalText.length > maxChars) {
+        element.textContent = originalText.slice(0, maxChars);
+        element.classList.add("limited-overview");
+      }
+    }
+
+    // Update the overview text based on screen width
+    function updateOverviewText() {
+      const screenWidth = window.innerWidth;
+
+      // Adjust the character limit as needed
+      if (screenWidth <= 520) {
+        applyCharacterLimit(searchedResultOverview, 50);
+      }
+
+      if (screenWidth <= 800) {
+        applyCharacterLimit(searchedResultOverview, 100);
+      }
+
+      // Restore the original text if necessary
+      if (screenWidth > 800) {
+        searchedResultOverview.textContent = overviewText;
+        searchedResultOverview.classList.remove("limited-overview");
+      }
+    }
+
+    // Assume 'overviewText' is the original overview text
+    const overviewText = searchedResultOverview.textContent;
+
     searchedResultOverview.setAttribute(
       "style",
-      "font-size: 1.35rem; color: lightgrey "
+      "font-size: 1.35rem; color: lightgrey"
     );
 
+    // Apply character limit based on initial screen width
+    updateOverviewText();
+
+    // Update the overview text when the window is resized
+    window.addEventListener("resize", updateOverviewText);
+
+    // Add click event to movie title for redirection
     searchedResultTitleEl.addEventListener("click", (event) => {
       console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
