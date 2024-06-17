@@ -24,6 +24,9 @@ function fetchMedia() {
     .then((data) => {
       console.log(data);
       displayResults(data);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
     });
 }
 
@@ -98,6 +101,7 @@ function displayResults(data) {
     );
 
     // ----------------------------------------------------------------------------------
+    // RESPONSIVE DESIGN USING MEDIA QUERIES
 
     // Create a CSS class for the media query
     const style = document.createElement("style");
@@ -147,7 +151,7 @@ function displayResults(data) {
 
     // ----------------------------------------------------------------------------------
 
-    // Apply character limit
+    // Apply character limit for overview text
     function applyCharacterLimit(element, maxChars) {
       const originalText = element.textContent;
       if (originalText.length > maxChars) {
@@ -193,6 +197,7 @@ function displayResults(data) {
     // ----------------------------------------------------------------------------------
 
     // Add click event to movie title for redirection
+
     searchedResultTitleEl.addEventListener("click", (event) => {
       console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
