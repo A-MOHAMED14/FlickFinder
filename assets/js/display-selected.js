@@ -5,16 +5,14 @@ const watchlistBtnEl = document.querySelector("#watchlist-btn");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
-const YT_API_KEY = "AIzaSyBkhpBJMBBVKSvH7G7xVFJjex3Q5bZc6o8";
-
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
-const YT_API_BASE_URL = "https://www.googleapis.com/youtube/v3";
+const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
+
+// const YT_API_KEY = "AIzaSyBkhpBJMBBVKSvH7G7xVFJjex3Q5bZc6o8";
+// const YT_API_BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 const SearchQueryParam = document.location.search;
 let mediaId = SearchQueryParam.slice(17, SearchQueryParam.length);
-console.log(mediaId, "<-----");
-
-const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
 
 function fetchMediaDetails() {
   const apiURL = `${TMDB_API_BASE_URL}/movie/${mediaId}?api_key=${TMDB_API_KEY}`;
@@ -24,8 +22,11 @@ function fetchMediaDetails() {
       return response.json();
     })
     .then((data) => {
-      // console.log(data);
+      console.log(data);
       displaySelectedMedia(data);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
     });
 }
 
@@ -39,88 +40,15 @@ function fetchRecommendations() {
       return response.json();
     })
     .then((data) => {
-      // console.log(data);
+      console.log(data);
       displayRecommendations(data);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
     });
 }
 
 fetchRecommendations();
-
-function displayRecommendations(data) {
-  // Store required data into variables
-  console.log(data);
-  for (let i = 0; i < 5; i++) {
-    const recommendations = data.results;
-    const uniqueId = recommendations[i].id;
-
-    const title = recommendations[i].title;
-    const posterPathURL = recommendations[i].poster_path;
-    const rating = recommendations[i].vote_average;
-
-    // Create the DOM elements
-    const recommendationEl = document.createElement("div");
-
-    const posterImgEl = document.createElement("div");
-    const contentEl = document.createElement("div");
-
-    const posterEl = document.createElement("img");
-    const titleBtnEl = document.createElement("button");
-    const ratingEl = document.createElement("p");
-
-    // recommendationsHeaderEl.textContent = "Recommendations";
-    posterEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
-    posterEl.alt = title;
-    posterEl.setAttribute("data-id", uniqueId);
-    titleBtnEl.textContent = title;
-    ratingEl.textContent = `⭐ ${rating}`;
-
-    // Add content to the DOM elements
-    posterImgEl.append(posterEl);
-    contentEl.append(titleBtnEl);
-    contentEl.append(ratingEl);
-
-    recommendationEl.append(posterImgEl);
-    recommendationEl.append(contentEl);
-
-    recommendationsEl.append(recommendationEl);
-
-    posterEl.setAttribute("style", "height: 275px; border-radius: 7px");
-    contentEl.setAttribute(
-      "style",
-      "width: 190px; display: flex; flex-direction: column"
-    );
-    titleBtnEl.setAttribute(
-      "style",
-      "text-align: cente; font-size: 1.1rem; margin-top: 10px; background-color: #212121; color: white; border: none"
-    );
-    ratingEl.setAttribute(
-      "style",
-      "text-align: center; font-size: 1rem; margin-top: 10px; color: lightgrey"
-    );
-
-    posterEl.addEventListener("click", (event) => {
-      console.log(event.target);
-      const uniqueId = event.target.getAttribute("data-id");
-      mediaId = uniqueId;
-
-      mediaEl.textContent = "";
-
-      fetchMediaDetails();
-    });
-
-    posterEl.addEventListener("mouseover", () => {
-      posterEl.style.border = "3px solid rgb(90, 223, 176)";
-      posterEl.style.boxShadow = "3px 3px 3px grey";
-    });
-
-    posterEl.addEventListener("mouseout", () => {
-      posterEl.style.border = "none";
-      posterEl.style.boxShadow = "none";
-    });
-  }
-}
-
-displayRecommendations();
 
 function displaySelectedMedia(data) {
   const selectedMedia = data;
@@ -350,6 +278,81 @@ function displaySelectedMedia(data) {
 }
 
 displaySelectedMedia();
+
+function displayRecommendations(data) {
+  // Store required data into variables
+
+  for (let i = 0; i < 5; i++) {
+    const recommendations = data.results;
+    const uniqueId = recommendations[i].id;
+
+    const title = recommendations[i].title;
+    const posterPathURL = recommendations[i].poster_path;
+    const rating = recommendations[i].vote_average;
+
+    // Create DOM elements
+    const recommendationEl = document.createElement("div");
+
+    const posterImgEl = document.createElement("div");
+    const contentEl = document.createElement("div");
+
+    const posterEl = document.createElement("img");
+    const titleBtnEl = document.createElement("button");
+    const ratingEl = document.createElement("p");
+
+    posterEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
+    posterEl.alt = title;
+    posterEl.setAttribute("data-id", uniqueId);
+    titleBtnEl.textContent = title;
+    ratingEl.textContent = `⭐ ${rating}`;
+
+    // Add content to the DOM elements
+    posterImgEl.append(posterEl);
+    contentEl.append(titleBtnEl);
+    contentEl.append(ratingEl);
+
+    recommendationEl.append(posterImgEl);
+    recommendationEl.append(contentEl);
+
+    recommendationsEl.append(recommendationEl);
+
+    posterEl.setAttribute("style", "height: 275px; border-radius: 7px");
+    contentEl.setAttribute(
+      "style",
+      "width: 190px; display: flex; flex-direction: column"
+    );
+    titleBtnEl.setAttribute(
+      "style",
+      "text-align: cente; font-size: 1.1rem; margin-top: 10px; background-color: #212121; color: white; border: none"
+    );
+    ratingEl.setAttribute(
+      "style",
+      "text-align: center; font-size: 1rem; margin-top: 10px; color: lightgrey"
+    );
+
+    posterEl.addEventListener("click", (event) => {
+      console.log(event.target);
+      const uniqueId = event.target.getAttribute("data-id");
+      mediaId = uniqueId;
+
+      mediaEl.textContent = "";
+
+      fetchMediaDetails();
+    });
+
+    posterEl.addEventListener("mouseover", () => {
+      posterEl.style.border = "3px solid rgb(90, 223, 176)";
+      posterEl.style.boxShadow = "3px 3px 3px grey";
+    });
+
+    posterEl.addEventListener("mouseout", () => {
+      posterEl.style.border = "none";
+      posterEl.style.boxShadow = "none";
+    });
+  }
+}
+
+displayRecommendations();
 
 // function playTheTrailer(title) {
 //   // // Create the dialog element if it doesn't already exist
