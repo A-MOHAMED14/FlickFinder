@@ -97,16 +97,55 @@ function displayResults(data) {
       "margin: 10px 0px; color: grey; font-size: 1.25rem"
     );
 
+    // ----------------------------------------------------------------------------------
+
     // Create a CSS class for the media query
     const style = document.createElement("style");
     style.innerHTML = `
-  @media (max-width: 800px) {
+   @media (max-width: 800px) {
     .limited-overview::after {
       content: '...';
     }
-  }
-`;
+   }
+    @media (max-width: 530px) {
+     .results-element-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px
+      }
+    }
+   `;
+
     document.head.appendChild(style);
+
+    // ----------------------------------------------------------------------------------
+
+    // Change flex direction
+
+    function alterFlexDirection() {
+      resultContainerEl.classList.add("results-element-container");
+    }
+
+    // Update flex direction based on screen width
+
+    function updateFlexDirection() {
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth <= 530) {
+        alterFlexDirection();
+      } else {
+        resultContainerEl.classList.remove("results-element-container");
+      }
+    }
+
+    // Alter flex direction based on initial screen width
+    updateFlexDirection();
+
+    // Update flex direction when the window is resized
+    window.addEventListener("resize", updateFlexDirection);
+
+    // ----------------------------------------------------------------------------------
 
     // Apply character limit
     function applyCharacterLimit(element, maxChars) {
@@ -150,6 +189,8 @@ function displayResults(data) {
 
     // Update the overview text when the window is resized
     window.addEventListener("resize", updateOverviewText);
+
+    // ----------------------------------------------------------------------------------
 
     // Add click event to movie title for redirection
     searchedResultTitleEl.addEventListener("click", (event) => {
