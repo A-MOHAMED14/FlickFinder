@@ -70,8 +70,8 @@ function displayRecommendations(data) {
     // recommendationsHeaderEl.textContent = "Recommendations";
     posterEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
     posterEl.alt = title;
+    posterEl.setAttribute("data-id", uniqueId);
     titleBtnEl.textContent = title;
-    titleBtnEl.setAttribute("data-id", uniqueId);
     ratingEl.textContent = `⭐ ${rating}`;
 
     // Add content to the DOM elements
@@ -98,7 +98,7 @@ function displayRecommendations(data) {
       "text-align: center; font-size: 1rem; margin-top: 10px; color: lightgrey"
     );
 
-    titleBtnEl.addEventListener("click", (event) => {
+    posterEl.addEventListener("click", (event) => {
       console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
       mediaId = uniqueId;
@@ -106,7 +106,16 @@ function displayRecommendations(data) {
       mediaEl.textContent = "";
 
       fetchMediaDetails();
-      // displayRecommendations();
+    });
+
+    posterEl.addEventListener("mouseover", () => {
+      posterEl.style.border = "3px solid rgb(90, 223, 176)";
+      posterEl.style.boxShadow = "3px 3px 3px grey";
+    });
+
+    posterEl.addEventListener("mouseout", () => {
+      posterEl.style.border = "none";
+      posterEl.style.boxShadow = "none";
     });
   }
 }
@@ -218,17 +227,17 @@ function displaySelectedMedia(data) {
   // Create a CSS class for the media query
   const style = document.createElement("style");
   style.innerHTML = `
-@media (max-width: 1020px) {
+ @media (max-width: 1020px) {
   .limited-overview::after {
     content: '...';
   }
-}
+ }
 
-@media (max-width: 850px) {
+ @media (max-width: 850px) {
   .responsive-title {
     font-size: 1.5rem;
-}
-`;
+ }
+ `;
   document.head.appendChild(style);
 
   // Apply styling to DOM elements
