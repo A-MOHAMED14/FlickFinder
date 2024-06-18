@@ -1,6 +1,7 @@
 // DOM elements
 const searchFormEl = document.querySelector("#search-form");
 const filterBtnEl = document.querySelector("#filter-btn");
+const dialogEl = document.querySelector("#dialog");
 const trendingWeekEl = document.querySelector("#trending-week");
 
 // GLOBAL VARIABLES
