@@ -171,12 +171,45 @@ function fetchMovieRatings() {
 fetchMovieRatings();
 
 function fetchMoviesByRating(ratings) {
-  console.log("------ Movies by Ratings: -----", ratings);
+  console.log("------ Movies by Rating: -----", ratings);
 
   ratings.forEach((rating) => {
     const movieTitle = rating.title;
     // console.log(movieTitle);
     // NEED TO DISPLAY EACH MOVIE USING EACH MOVIE TITLE ON THE RESULTS PAGE
+  });
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// FETCH MOVIE BY YEAR RELEASED
+
+function fetchMoviesYearReleased() {
+  const movieYearReleased = 1999;
+  const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&primary_release_year=${movieYearReleased}`;
+
+  fetch(apiURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      // console.log(data);
+      const movies = data.results;
+      displayMoviesByYearReleased(movies);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+    });
+}
+
+fetchMoviesYearReleased();
+
+function displayMoviesByYearReleased(movies) {
+  console.log("------ Movies by Year: ------", movies);
+
+  movies.forEach((movie) => {
+    const movieTitle = movie.title;
+    // console.log(movieTitle);
   });
 }
 
