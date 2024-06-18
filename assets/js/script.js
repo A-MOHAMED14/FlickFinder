@@ -226,6 +226,7 @@ function displayMoviesByYearReleased(movies) {
 filterBtnEl.addEventListener("click", displayDialogBox);
 
 function displayDialogBox() {
+  // Genres dropdown
   const genres = [
     "Action",
     "Adventure",
@@ -273,6 +274,8 @@ function displayDialogBox() {
   filterFormEl.append(genreSelectEl);
 
   // -----------------------------------------------------------------------------------------------------------------------------
+  // Years dropdown
+
   const years = [
     1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
     2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013,
@@ -304,6 +307,31 @@ function displayDialogBox() {
   dialogEl.innerHTML = ""; // Clear previous content if any
   dialogEl.append(filterFormEl);
 
+  // -----------------------------------------------------------------------------------------------------------------------------
+  // Ratings dropdown
+  
+  const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  // Create the label element
+  const ratingLabelEl = document.createElement("label");
+  ratingLabelEl.setAttribute("for", "movie-ratings");
+  ratingLabelEl.textContent = "Rating:";
+
+  // Create the select element
+  const ratingSelectEl = document.createElement("select");
+  ratingSelectEl.setAttribute("id", "movie-ratings");
+
+  // Create and append option elements to the select element
+  ratings.forEach((rating) => {
+    const genreOptionEl = document.createElement("option");
+    genreOptionEl.setAttribute("value", rating);
+    genreOptionEl.textContent = rating;
+    ratingSelectEl.append(genreOptionEl);
+  });
+
+  // Append the label and select elements to the form
+  filterFormEl.append(ratingLabelEl);
+  filterFormEl.append(ratingSelectEl);
   // -----------------------------------------------------------------------------------------------------------------------------
 
   // Display the dialog using jQuery UI
