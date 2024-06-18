@@ -105,3 +105,39 @@ function fetchGenreIds() {
 }
 
 fetchGenreIds();
+
+function fetchMoviesByGenre(genres) {
+  console.log(genres, "<------");
+
+  genres.forEach((genre) => {
+    const movieGenreId = genre.id;
+    const movieGenreName = genre.name;
+
+    const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${movieGenreId}`;
+
+    const movieGenreSelected = "Comedy";
+    if (movieGenreName === movieGenreSelected) {
+      fetch(apiURL)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // console.log(data);
+          const moviesByGenre = data.results;
+          fetchMoviesGenre(moviesByGenre);
+        })
+        .catch((error) => {
+          console.error(`Error fetching data: ${error}`);
+        });
+    }
+  });
+}
+
+function fetchMoviesGenre(moviesByGenre) {
+  console.log(moviesByGenre, "*******");
+
+  moviesByGenre.forEach((movie) => {
+    const movieTitle = movie.title;
+    console.log(movieTitle);
+  });
+}
