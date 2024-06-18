@@ -309,7 +309,7 @@ function displayDialogBox() {
 
   // -----------------------------------------------------------------------------------------------------------------------------
   // Ratings dropdown
-  
+
   const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // Create the label element
@@ -332,12 +332,25 @@ function displayDialogBox() {
   // Append the label and select elements to the form
   filterFormEl.append(ratingLabelEl);
   filterFormEl.append(ratingSelectEl);
+
   // -----------------------------------------------------------------------------------------------------------------------------
+  // Clear previous content
+  dialogEl.innerHTML = "";
+  dialogEl.append(filterFormEl);
+
+  filterFormEl.setAttribute(
+    "style",
+    "display: flex; justify-content: space-between"
+  );
+
+  genreLabelEl.setAttribute("style", "font-weight: bold");
+  yearLabelEl.setAttribute("style", "font-weight: bold");
+  ratingLabelEl.setAttribute("style", "font-weight: bold");
+
+  dialogEl.setAttribute("style", "width: 100px");
 
   // Display the dialog using jQuery UI
   $("#dialog").dialog({
     width: 800,
   });
 }
-
-// -----------------------------------------------------------------------------------------------------------------------------
