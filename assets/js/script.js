@@ -107,7 +107,7 @@ function fetchGenreIds() {
 fetchGenreIds();
 
 function fetchMoviesByGenre(genres) {
-  console.log(genres, "<------");
+  // console.log(genres, "<------");
 
   genres.forEach((genre) => {
     const movieGenreId = genre.id;
@@ -134,10 +134,50 @@ function fetchMoviesByGenre(genres) {
 }
 
 function fetchMoviesGenre(moviesByGenre) {
-  console.log(moviesByGenre, "*******");
+  console.log("------ Movies by Genre: -----", moviesByGenre);
 
   moviesByGenre.forEach((movie) => {
     const movieTitle = movie.title;
-    console.log(movieTitle);
+    // console.log(movieTitle);
   });
 }
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// FETCH MOVIE BY RATING
+
+function fetchMovieRatings() {
+  const movieRatingSelected = 7;
+
+  const movieRatingLowerRange = Math.floor(movieRatingSelected);
+  const movieRatingUpperRange = Math.ceil(movieRatingSelected + 0.1) - 0.1;
+
+  const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&vote_average.gte=${movieRatingLowerRange}&vote_average.lte=${movieRatingUpperRange}`;
+
+  fetch(apiURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      const ratings = data.results;
+      fetchMoviesByRating(ratings);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+    });
+}
+
+fetchMovieRatings();
+
+function fetchMoviesByRating(ratings) {
+  console.log("------ Movies by Ratings: -----", ratings);
+
+  ratings.forEach((rating) => {
+    const movieTitle = rating.title;
+    // console.log(movieTitle);
+    // NEED TO DISPLAY EACH MOVIE USING EACH MOVIE TITLE ON THE RESULTS PAGE
+  });
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
