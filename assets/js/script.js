@@ -1,5 +1,6 @@
 // DOM elements
 const searchFormEl = document.querySelector("#search-form");
+const filterBtnEl = document.querySelector("#filter-btn");
 const trendingWeekEl = document.querySelector("#trending-week");
 
 // GLOBAL VARIABLES
@@ -213,4 +214,62 @@ function displayMoviesByYearReleased(movies) {
   });
 }
 
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// For each of the above, you need to figure out a way display the filter selected on the results page.
+
+// POSSIBLE SOLUTION IS TO STORE EACH OF THE MOVIE TITLES INTO AN ARRAY AND SEND IT OVER TO THE RESULST.HTML FILE
+// AND DISPLAY EACH MOVIE BY FETCHING EACH MOVIE IN THE ARRAY USING IT'S TITLE - MAY NEED TO USE ASYNC AWAIT FOR THIS.
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+filterBtnEl.addEventListener("click", displayDialogBox);
+
+function displayDialogBox() {
+  const genres = [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Music",
+    "Mystery",
+    "Romance",
+    "Science Fiction",
+    "TV Movie",
+    "Thriller",
+    "War",
+    "Western",
+  ];
+
+  // Create the form element
+  const filterFormEl = document.createElement("form");
+
+  // Create the label element
+  const genreLabelEl = document.createElement("label");
+  genreLabelEl.setAttribute("for", "genre-names");
+  genreLabelEl.textContent = "Genre:";
+
+  // Create the select element
+  const genreSelectEl = document.createElement("select");
+  genreSelectEl.setAttribute("id", "genre-names");
+
+  // Create and append option elements to the select element
+  genres.forEach((genre) => {
+    const genreOptionEl = document.createElement("option");
+    genreOptionEl.setAttribute("value", genre);
+    genreOptionEl.textContent = genre;
+    genreSelectEl.append(genreOptionEl);
+  });
+
+  // Append the label and select elements to the form
+  filterFormEl.append(genreLabelEl);
+  filterFormEl.append(genreSelectEl);
+}
 // -----------------------------------------------------------------------------------------------------------------------------
