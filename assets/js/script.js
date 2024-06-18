@@ -83,3 +83,25 @@ function displayTrending(data) {
     );
   }
 }
+
+// -----------------------------------------------------------------------------------------------------------------------------
+// FETCH MOVIE BY GENRE
+
+function fetchGenreIds() {
+  const apiURL = `${TMDB_API_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`;
+
+  fetch(apiURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      // console.log(data);
+      const genres = data.genres;
+      fetchMoviesByGenre(genres);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+    });
+}
+
+fetchGenreIds();
