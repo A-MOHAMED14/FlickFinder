@@ -271,5 +271,13 @@ function displayDialogBox() {
   // Append the label and select elements to the form
   filterFormEl.append(genreLabelEl);
   filterFormEl.append(genreSelectEl);
+
+  // -----------------------------------------------------------------------------------------------------------------------------
+
+  // Display the dialog using jQuery UI
+  $("#dialog").dialog({
+    width: 800,
+  });
 }
+
 // -----------------------------------------------------------------------------------------------------------------------------
