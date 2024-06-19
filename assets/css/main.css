@@ -103,6 +103,23 @@ header {
   color: var(--colour4);
 }
 
+/* FILTERED RESULTS SECTION STYLING */
+
+#results-container {
+  display: flex;
+  justify-content: center;
+}
+
+#results-section {
+  width: 1500px;
+}
+
+#results {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px;
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (max-width: 780px) {
