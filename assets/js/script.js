@@ -413,3 +413,40 @@ function fetchGenreIds() {
       console.error(`Error fetching data: ${error}`);
     });
 }
+
+// -------------------------------------------------------------------------------------------------------------------------
+// Retrieve value selected from drop down list and use them to fetch filtered movies
+
+function fetchFilteredMovies() {
+  const genreSelected = document.querySelector("#genre-names").value;
+  const yearSelected = document.querySelector("#year-released").value;
+  const ratingSelected = document.querySelector("#movie-ratings").value;
+  console.log("Genre:", genreSelected);
+  console.log("Year:", yearSelected);
+  console.log("Rating:", ratingSelected);
+
+  // Fetch the genre IDs
+  fetchGenreIds().then((genres) => {
+    console.log("Genres:", genres);
+
+    const genre = genres.find((genre) => genre.name === genreSelected);
+
+    if (genre) {
+      const movieGenreId = genre.id;
+
+      const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${movieGenreId}&primary_release_year=${yearSelected}&vote_average.gte=${ratingSelected}`;
+
+      fetch(apiURL)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Filtered Movies:", data);
+          // displayFilteredMovies(data); // Call your display function here if you have one
+        })
+        .catch((error) => {
+          console.error(`Error fetching data: ${error}`);
+        });
+    } else {
+      console.error(`Genre "${genreSelected}" not found.`);
+    }
+  });
+}
