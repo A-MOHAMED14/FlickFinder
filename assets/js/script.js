@@ -37,7 +37,7 @@ function fetchTrending() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      console.log("TRENDING THIS WEEK:", data);
       displayTrending(data);
     })
     .catch((error) => {
@@ -54,6 +54,7 @@ function displayTrending(data) {
     const posterPath = trendingArr[i].poster_path;
     const title = trendingArr[i].title || trendingArr[i].name;
     const mediaType = trendingArr[i].media_type;
+    const mediaId = trendingArr[i].id;
 
     const posterEl = document.createElement("img");
     const trendingCard = document.createElement("div");
@@ -62,6 +63,8 @@ function displayTrending(data) {
 
     posterEl.src = `${TMDB_BASE_IMG_URL}${posterPath}`;
     posterEl.alt = title;
+    posterEl.setAttribute("data-id", mediaId);
+
     titleEl.textContent = title;
     mediaTypeEl.textContent = mediaType;
 
@@ -84,6 +87,25 @@ function displayTrending(data) {
       "style",
       "font-size: 1.2rem; color: grey; margin-top: 5px"
     );
+
+    // Add click event to trending movies poster, once clicked, will be redirected to movie details
+
+    posterEl.addEventListener("click", (event) => {
+      console.log(event.target);
+      const uniqueId = event.target.getAttribute("data-id");
+
+      handleMovieSelected(uniqueId);
+    });
+
+    posterEl.addEventListener("mouseover", () => {
+      posterEl.style.border = "3px solid rgb(90, 223, 176)";
+      posterEl.style.boxShadow = "3px 3px 3px grey";
+    });
+
+    posterEl.addEventListener("mouseout", () => {
+      posterEl.style.border = "none";
+      posterEl.style.boxShadow = "none";
+    });
   }
 }
 
@@ -633,7 +655,7 @@ function displayFilteredMovies(data) {
 
     // ----------------------------------------------------------------------------------
 
-    // Add click event to movie title for redirection
+    // Add click event to filtered movie title for redirection
 
     searchedResultTitleEl.addEventListener("click", (event) => {
       console.log(event.target);
