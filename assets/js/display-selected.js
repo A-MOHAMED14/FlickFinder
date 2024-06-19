@@ -19,7 +19,6 @@ function fetchMediaDetails() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       displaySelectedMedia(data);
     })
     .catch((error) => {
@@ -37,7 +36,6 @@ function fetchRecommendations() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       displayRecommendations(data);
     })
     .catch((error) => {
@@ -346,7 +344,6 @@ function displayRecommendations(data) {
     );
 
     posterEl.addEventListener("click", (event) => {
-      console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
       mediaId = uniqueId;
 
@@ -378,7 +375,6 @@ function handleSaveBtn(mediaId) {
       mediaArr.push(mediaId);
       localStorage.setItem("searchedmedia", JSON.stringify(mediaArr));
     } else {
-      console.log("Media ID already saved");
       return;
     }
   }
@@ -388,8 +384,6 @@ function handleSaveBtn(mediaId) {
 }
 
 function fetchTrailer(movieId) {
-  console.log(movieId);
-
   const apiURL = `${TMDB_API_BASE_URL}/movie/${movieId}/videos?api_key=${TMDB_API_KEY}`;
 
   fetch(apiURL)
@@ -397,7 +391,6 @@ function fetchTrailer(movieId) {
       return response.json();
     })
     .then((data) => {
-      console.log("MOVIE TRAILER:", data);
       playTrailer(data);
     })
     .catch((error) => {
@@ -407,7 +400,6 @@ function fetchTrailer(movieId) {
 
 function playTrailer(data) {
   const videos = data.results;
-  console.log("MOVIE VIDEO DATA:", videos);
 
   const trailer = videos.find((video) => video.type === "Trailer");
 
