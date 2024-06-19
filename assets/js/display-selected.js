@@ -284,7 +284,9 @@ function displaySelectedMedia(data) {
     saveBtnEl.style.boxShadow = "4px 4px 3px lightgrey";
   });
 
-  // trailerBtnEl.addEventListener("click", playTheTrailer(title));
+  // Add click event listners to trailer and watchlist buttons
+
+  trailerBtnEl.addEventListener("click", playTheTrailer(movieId));
 
   saveBtnEl.addEventListener("click", () => {
     handleSaveBtn(selectedMedia.id);
