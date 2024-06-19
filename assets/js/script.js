@@ -398,13 +398,17 @@ function displayDialogBox() {
       },
     },
   });
-}
+
 // -----------------------------------------------------------------------------------------------------------------------------
 // Retrieve value selected from drop down list
 
 function fetchFilteredMovies() {
-  const genre = document.getElementById("genre-names").value;
-  const year = document.getElementById("year-released").value;
-  const rating = document.getElementById("rating-names").value;
-  console.log(genre, "########");
+  const genre = document.querySelector("#genre-names").value;
+  const year = document.querySelector("#year-released").value;
+  const rating = document.querySelector("#movie-ratings").value;
+  console.log(genre, "Genre");
+  console.log(year, "Year");
+  console.log(rating, "Rating");
+
+}
 }
