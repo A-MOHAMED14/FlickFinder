@@ -56,24 +56,20 @@ function displayTrending(data) {
   for (let i = 0; i < moviesArr.length; i++) {
     const posterPath = moviesArr[i].poster_path;
     const title = moviesArr[i].title;
-    const mediaType = moviesArr[i].media_type;
     const mediaId = moviesArr[i].id;
 
     const posterEl = document.createElement("img");
     const trendingCard = document.createElement("div");
     const titleEl = document.createElement("p");
-    const mediaTypeEl = document.createElement("p");
 
     posterEl.src = `${TMDB_BASE_IMG_URL}${posterPath}`;
     posterEl.alt = title;
     posterEl.setAttribute("data-id", mediaId);
 
     titleEl.textContent = title;
-    mediaTypeEl.textContent = mediaType;
 
     trendingCard.append(posterEl);
     trendingCard.append(titleEl);
-    trendingCard.append(mediaTypeEl);
 
     trendingWeekEl.append(trendingCard);
 
@@ -87,14 +83,7 @@ function displayTrending(data) {
       "border-radius: 10px; transition: transform 0.3s ease"
     );
 
-    titleEl.setAttribute("style", "margin-top: 10px");
-
-    mediaTypeEl.setAttribute(
-      "style",
-      "font-size: 1.2rem; color: grey; margin-top: 5px"
-    );
-
-    // Add click event to trending movies poster, once clicked, will be redirected to movie details
+    titleEl.setAttribute("style", "margin-top: 15px");
 
     posterEl.addEventListener("click", (event) => {
       console.log(event.target);
