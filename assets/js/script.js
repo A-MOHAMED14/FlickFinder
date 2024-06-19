@@ -109,7 +109,7 @@ function fetchGenreIds() {
 fetchGenreIds();
 
 function fetchMoviesByGenre(genres) {
-  // console.log(genres, "<------");
+  // console.log("GENRE IDs:", genres, "<------");
 
   genres.forEach((genre) => {
     const movieGenreId = genre.id;
@@ -136,7 +136,7 @@ function fetchMoviesByGenre(genres) {
 }
 
 function fetchMoviesGenre(moviesByGenre) {
-  console.log("------ Movies by Genre: -----", moviesByGenre);
+  // console.log("------ Movies by Genre: -----", moviesByGenre);
 
   moviesByGenre.forEach((movie) => {
     const movieTitle = movie.title;
@@ -173,7 +173,7 @@ function fetchMovieRatings() {
 fetchMovieRatings();
 
 function fetchMoviesByRating(ratings) {
-  console.log("------ Movies by Rating: -----", ratings);
+  // console.log("------ Movies by Rating: -----", ratings);
 
   ratings.forEach((rating) => {
     const movieTitle = rating.title;
@@ -207,7 +207,7 @@ function fetchMoviesYearReleased() {
 fetchMoviesYearReleased();
 
 function displayMoviesByYearReleased(movies) {
-  console.log("------ Movies by Year: ------", movies);
+  // console.log("------ Movies by Year: ------", movies);
 
   movies.forEach((movie) => {
     const movieTitle = movie.title;
@@ -398,17 +398,18 @@ function displayDialogBox() {
       },
     },
   });
-
-// -----------------------------------------------------------------------------------------------------------------------------
-// Retrieve value selected from drop down list
-
-function fetchFilteredMovies() {
-  const genre = document.querySelector("#genre-names").value;
-  const year = document.querySelector("#year-released").value;
-  const rating = document.querySelector("#movie-ratings").value;
-  console.log(genre, "Genre");
-  console.log(year, "Year");
-  console.log(rating, "Rating");
-
 }
+
+// ---------------------------------------------------------------------------------------------------------------------------
+function fetchGenreIds() {
+  const apiURL = `${TMDB_API_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`;
+
+  return fetch(apiURL)
+    .then((response) => response.json())
+    .then((data) => {
+      return data.genres;
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+    });
 }
