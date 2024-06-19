@@ -151,92 +151,14 @@ function fetchMoviesByGenre(genres) {
   });
 }
 
-function fetchMoviesGenre(moviesByGenre) {
-  // console.log("------ Movies by Genre: -----", moviesByGenre);
+// function fetchMoviesGenre(moviesByGenre) {
+//   // console.log("------ Movies by Genre: -----", moviesByGenre);
 
-  moviesByGenre.forEach((movie) => {
-    const movieTitle = movie.title;
-    // console.log(movieTitle);
-  });
-}
-
-// -----------------------------------------------------------------------------------------------------------------------------
-
-// FETCH MOVIE BY RATING
-
-function fetchMovieRatings() {
-  const movieRatingSelected = 7;
-
-  const movieRatingLowerRange = Math.floor(movieRatingSelected);
-  const movieRatingUpperRange = Math.ceil(movieRatingSelected + 0.1) - 0.1;
-
-  const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&vote_average.gte=${movieRatingLowerRange}&vote_average.lte=${movieRatingUpperRange}`;
-
-  fetch(apiURL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      const ratings = data.results;
-      fetchMoviesByRating(ratings);
-    })
-    .catch((error) => {
-      console.error(`Error fetching data: ${error}`);
-    });
-}
-
-fetchMovieRatings();
-
-function fetchMoviesByRating(ratings) {
-  // console.log("------ Movies by Rating: -----", ratings);
-
-  ratings.forEach((rating) => {
-    const movieTitle = rating.title;
-    // console.log(movieTitle);
-    // NEED TO DISPLAY EACH MOVIE USING EACH MOVIE TITLE ON THE RESULTS PAGE
-  });
-}
-
-// -----------------------------------------------------------------------------------------------------------------------------
-
-// FETCH MOVIE BY YEAR RELEASED
-
-function fetchMoviesYearReleased() {
-  const movieYearReleased = 1999;
-  const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&primary_release_year=${movieYearReleased}`;
-
-  fetch(apiURL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      // console.log(data);
-      const movies = data.results;
-      displayMoviesByYearReleased(movies);
-    })
-    .catch((error) => {
-      console.error(`Error fetching data: ${error}`);
-    });
-}
-
-fetchMoviesYearReleased();
-
-function displayMoviesByYearReleased(movies) {
-  // console.log("------ Movies by Year: ------", movies);
-
-  movies.forEach((movie) => {
-    const movieTitle = movie.title;
-    // console.log(movieTitle);
-  });
-}
-
-// -----------------------------------------------------------------------------------------------------------------------------
-
-// For each of the above, you need to figure out a way display the filter selected on the results page.
-
-// POSSIBLE SOLUTION IS TO STORE EACH OF THE MOVIE TITLES INTO AN ARRAY AND SEND IT OVER TO THE RESULST.HTML FILE
-// AND DISPLAY EACH MOVIE BY FETCHING EACH MOVIE IN THE ARRAY USING IT'S TITLE - MAY NEED TO USE ASYNC AWAIT FOR THIS.
+//   moviesByGenre.forEach((movie) => {
+//     const movieTitle = movie.title;
+//     // console.log(movieTitle);
+//   });
+// }
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
