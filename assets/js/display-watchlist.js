@@ -9,7 +9,6 @@ const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w200";
 let responseArr = [];
 
 // localStorage.clear();
-console.log(localStorage, "<=========");
 
 async function fetchMediaDetails() {
   // Get media ID from local storage
@@ -44,8 +43,6 @@ async function fetchMediaDetails() {
 fetchMediaDetails();
 
 function displaySavedMedia() {
-  console.log(responseArr);
-
   for (let i = 0; i < responseArr.length; i++) {
     // store data to be displayed in to variables
     const savedMedia = responseArr[i];
@@ -82,7 +79,7 @@ function displaySavedMedia() {
 
     watchlistEl.append(savedMediaEl);
 
-    savedMediaEl.setAttribute('style', 'margin-bottom: 60px')
+    savedMediaEl.setAttribute("style", "margin-bottom: 60px");
     posterImgEl.setAttribute("style", "border-radius: 10px");
     savedMediaInfoEl.setAttribute(
       "style",
