@@ -440,7 +440,7 @@ function fetchFilteredMovies() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Filtered Movies:", data);
-          // displayFilteredMovies(data);
+          displayFilteredMovies(data);
         })
         .catch((error) => {
           console.error(`Error fetching data: ${error}`);
@@ -452,7 +452,7 @@ function fetchFilteredMovies() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Filtered Movies:", data);
-          // displayFilteredMovies(data);
+          displayFilteredMovies(data);
         })
         .catch((error) => {
           console.error(`Error fetching data: ${error}`);
@@ -461,4 +461,12 @@ function fetchFilteredMovies() {
       console.error(`No Movies Found`);
     }
   });
+}
+
+// -------------------------------------------------------------------------------------------------------------------------
+
+function displayFilteredMovies(data) {
+  document.querySelector("#trending-container").innerHTML = "";
+
+  console.log("PASSED OVER FILTERED MOVIES:", data);
 }
