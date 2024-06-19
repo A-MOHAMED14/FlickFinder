@@ -82,7 +82,10 @@ function displayTrending(data) {
       "width: 200px;text-align: center; margin: 30px"
     );
 
-    posterEl.setAttribute("style", "border-radius: 10px");
+    posterEl.setAttribute(
+      "style",
+      "border-radius: 10px; transition: transform 0.3s ease"
+    );
 
     titleEl.setAttribute("style", "margin-top: 10px");
 
@@ -101,15 +104,11 @@ function displayTrending(data) {
     });
 
     posterEl.addEventListener("mouseover", () => {
-      posterEl.style.border = "3px solid rgb(90, 223, 176)";
-      posterEl.style.boxShadow = "3px 3px 3px grey";
-      // posterEl.style.opacity = "1";
+      posterEl.style.transform = "scale(1.1)";
     });
 
     posterEl.addEventListener("mouseout", () => {
-      posterEl.style.border = "none";
-      posterEl.style.boxShadow = "none";
-      // posterEl.style.opacity = "0.5";
+      posterEl.style.transform = "scale(1)";
     });
   }
 }
