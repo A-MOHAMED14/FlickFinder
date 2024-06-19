@@ -50,11 +50,14 @@ fetchTrending();
 function displayTrending(data) {
   const trendingArr = data.results;
 
-  for (let i = 0; i < trendingArr.length; i++) {
-    const posterPath = trendingArr[i].poster_path;
-    const title = trendingArr[i].title || trendingArr[i].name;
-    const mediaType = trendingArr[i].media_type;
-    const mediaId = trendingArr[i].id;
+  const moviesArr = trendingArr.filter((item) => item.media_type === "movie");
+  console.log("MOVIES ONLYYY:", moviesArr);
+
+  for (let i = 0; i < moviesArr.length; i++) {
+    const posterPath = moviesArr[i].poster_path;
+    const title = moviesArr[i].title;
+    const mediaType = moviesArr[i].media_type;
+    const mediaId = moviesArr[i].id;
 
     const posterEl = document.createElement("img");
     const trendingCard = document.createElement("div");
@@ -100,11 +103,13 @@ function displayTrending(data) {
     posterEl.addEventListener("mouseover", () => {
       posterEl.style.border = "3px solid rgb(90, 223, 176)";
       posterEl.style.boxShadow = "3px 3px 3px grey";
+      // posterEl.style.opacity = "1";
     });
 
     posterEl.addEventListener("mouseout", () => {
       posterEl.style.border = "none";
       posterEl.style.boxShadow = "none";
+      // posterEl.style.opacity = "0.5";
     });
   }
 }
