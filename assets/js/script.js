@@ -639,7 +639,14 @@ function displayFilteredMovies(data) {
       console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
 
-      handleMediaSelected(uniqueId);
+      handleMovieSelected(uniqueId);
     });
   }
+}
+
+function handleMovieSelected(uniqueId) {
+  console.log(uniqueId, "<======");
+
+  const queryString = `../media-selected.html?external_source=${uniqueId}`;
+  location.assign(queryString);
 }
