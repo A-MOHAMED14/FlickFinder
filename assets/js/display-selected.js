@@ -398,8 +398,22 @@ function fetchTrailer(movieId) {
     })
     .then((data) => {
       console.log("MOVIE TRAILER:", data);
+      playTrailer(data);
     })
     .catch((error) => {
       console.error(`Error fetching data: ${error}`);
     });
+}
+
+function playTrailer(data) {
+  const videos = data.results;
+  console.log("MOVIE VIDEO DATA:", videos);
+
+  const trailer = videos.find((video) => video.type === "Trailer");
+
+  const trailerKey = trailer.key;
+
+  const trailerURL = `https://www.youtube.com/embed/${trailerKey}`;
+
+  location.assign(trailerURL);
 }
