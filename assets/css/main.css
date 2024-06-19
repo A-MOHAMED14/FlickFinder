@@ -122,6 +122,18 @@ header {
 
 /* RESPONSIVE DESIGN */
 
+@media (max-width: 1550px) {
+  #results-section {
+    width: 1000px;
+  }
+}
+
+@media (max-width: 1050px) {
+  #results-section {
+    width: 700px;
+  }
+}
+
 @media (max-width: 780px) {
   header {
     padding: 0px;
@@ -161,6 +173,12 @@ header {
   #trending-header {
     text-align: center;
     margin: 30px 0 10px 0;
+  }
+}
+
+@media (max-width: 730px) {
+  #results-section {
+    width: 500px;
   }
 }
 
@@ -208,7 +226,7 @@ header {
   }
 }
 
-@media (max-width: 519px) {
+@media (max-width: 530px) {
   header {
     padding: 0px;
     margin-top: 30px;
@@ -236,6 +254,10 @@ header {
   #search-btn {
     margin: 0;
     margin-top: 5px;
+  }
+
+  #results-section {
+    width: 300px;
   }
 
   #trending-container {
