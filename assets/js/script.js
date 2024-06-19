@@ -15,8 +15,6 @@ function handleSearchFormSubmit(event) {
 
   const searchInputVal = document.querySelector("#search-field").value;
 
-  console.log(searchInputVal, "<-----");
-
   if (!searchInputVal) {
     console.error("You need a search input value!");
     return;
@@ -37,7 +35,6 @@ function fetchTrending() {
       return response.json();
     })
     .then((data) => {
-      console.log("TRENDING THIS WEEK:", data);
       displayTrending(data);
     })
     .catch((error) => {
@@ -51,7 +48,6 @@ function displayTrending(data) {
   const trendingArr = data.results;
 
   const moviesArr = trendingArr.filter((item) => item.media_type === "movie");
-  console.log("MOVIES ONLYYY:", moviesArr);
 
   for (let i = 0; i < moviesArr.length; i++) {
     const posterPath = moviesArr[i].poster_path;
@@ -86,7 +82,6 @@ function displayTrending(data) {
     titleEl.setAttribute("style", "margin-top: 15px");
 
     posterEl.addEventListener("click", (event) => {
-      console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
 
       handleMovieSelected(uniqueId);
@@ -113,7 +108,6 @@ function fetchGenreIds() {
       return response.json();
     })
     .then((data) => {
-      // console.log(data);
       const genres = data.genres;
       fetchMoviesByGenre(genres);
     })
@@ -125,8 +119,6 @@ function fetchGenreIds() {
 fetchGenreIds();
 
 function fetchMoviesByGenre(genres) {
-  // console.log("GENRE IDs:", genres, "<------");
-
   genres.forEach((genre) => {
     const movieGenreId = genre.id;
     const movieGenreName = genre.name;
@@ -140,7 +132,6 @@ function fetchMoviesByGenre(genres) {
           return response.json();
         })
         .then((data) => {
-          // console.log(data);
           const moviesByGenre = data.results;
           fetchMoviesGenre(moviesByGenre);
         })
@@ -150,15 +141,6 @@ function fetchMoviesByGenre(genres) {
     }
   });
 }
-
-// function fetchMoviesGenre(moviesByGenre) {
-//   // console.log("------ Movies by Genre: -----", moviesByGenre);
-
-//   moviesByGenre.forEach((movie) => {
-//     const movieTitle = movie.title;
-//     // console.log(movieTitle);
-//   });
-// }
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
@@ -359,14 +341,9 @@ function fetchFilteredMovies() {
   const genreSelected = document.querySelector("#genre-names").value;
   const yearSelected = document.querySelector("#year-released").value;
   const ratingSelected = document.querySelector("#movie-ratings").value;
-  console.log("Genre:", genreSelected);
-  console.log("Year:", yearSelected);
-  console.log("Rating:", ratingSelected);
 
   // Fetch the genre IDs
   fetchGenreIds().then((genres) => {
-    console.log("Genres:", genres);
-
     const genre = genres.find((genre) => genre.name === genreSelected);
 
     if (genre) {
@@ -377,7 +354,6 @@ function fetchFilteredMovies() {
       fetch(apiURL)
         .then((response) => response.json())
         .then((data) => {
-          console.log("Filtered Movies:", data);
           displayFilteredMovies(data);
         })
         .catch((error) => {
@@ -389,7 +365,6 @@ function fetchFilteredMovies() {
       fetch(apiURL)
         .then((response) => response.json())
         .then((data) => {
-          console.log("Filtered Movies:", data);
           displayFilteredMovies(data);
         })
         .catch((error) => {
@@ -405,8 +380,6 @@ function fetchFilteredMovies() {
 
 function displayFilteredMovies(data) {
   document.querySelector("#trending-container").innerHTML = "";
-
-  console.log("PASSED OVER FILTERED MOVIES:", data);
 
   const results = data.results;
 
@@ -573,7 +546,6 @@ function displayFilteredMovies(data) {
     // Add click event to filtered movie title for redirection
 
     searchedResultTitleEl.addEventListener("click", (event) => {
-      console.log(event.target);
       const uniqueId = event.target.getAttribute("data-id");
 
       handleMovieSelected(uniqueId);
@@ -582,8 +554,6 @@ function displayFilteredMovies(data) {
 }
 
 function handleMovieSelected(uniqueId) {
-  console.log(uniqueId, "<======");
-
   const queryString = `../media-selected.html?external_source=${uniqueId}`;
   location.assign(queryString);
 }
