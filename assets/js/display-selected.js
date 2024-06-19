@@ -258,6 +258,20 @@ function displaySelectedMedia(data) {
     "font-size: 1.05rem; font-weight: bold; padding: 10px 15px; border: none; border-radius: 7px; background-color: rgb(90, 223, 176); color: rgb(59, 59, 59); box-shadow: 4px 4px 3px lightgrey"
   );
 
+  // Add mouseover/out event listners to trailer and watchlist buttons
+
+  trailerBtnEl.addEventListener("mouseover", () => {
+    trailerBtnEl.style.color = "white";
+    trailerBtnEl.style.backgroundColor = "rgb(50, 124, 98)";
+    trailerBtnEl.style.boxShadow = "4px 4px 3px darkgrey";
+  });
+
+  trailerBtnEl.addEventListener("mouseout", () => {
+    trailerBtnEl.style.color = "black";
+    trailerBtnEl.style.backgroundColor = "rgb(90, 223, 176)";
+    trailerBtnEl.style.boxShadow = "4px 4px 3px lightgrey";
+  });
+
   saveBtnEl.addEventListener("mouseover", () => {
     saveBtnEl.style.color = "white";
     saveBtnEl.style.backgroundColor = "rgb(50, 124, 98)";
