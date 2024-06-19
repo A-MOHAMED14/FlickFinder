@@ -440,13 +440,25 @@ function fetchFilteredMovies() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Filtered Movies:", data);
-          // displayFilteredMovies(data); // Call your display function here if you have one
+          // displayFilteredMovies(data);
+        })
+        .catch((error) => {
+          console.error(`Error fetching data: ${error}`);
+        });
+    } else if (!genre) {
+      const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&primary_release_year=${yearSelected}&vote_average.gte=${ratingSelected}`;
+
+      fetch(apiURL)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Filtered Movies:", data);
+          // displayFilteredMovies(data);
         })
         .catch((error) => {
           console.error(`Error fetching data: ${error}`);
         });
     } else {
-      console.error(`Genre "${genreSelected}" not found.`);
+      console.error(`No Movies Found`);
     }
   });
 }
