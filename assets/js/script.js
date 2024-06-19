@@ -224,7 +224,10 @@ function displayMoviesByYearReleased(movies) {
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
-filterBtnEl.addEventListener("click", displayDialogBox);
+filterBtnEl.addEventListener("click", (event) => {
+  event.preventDefault();
+  displayDialogBox();
+});
 
 function displayDialogBox() {
   // Genres dropdown
@@ -319,12 +322,12 @@ function displayDialogBox() {
 
   // Create the label element
   const yearLabelEl = document.createElement("label");
-  yearLabelEl.setAttribute("for", "genre-names");
+  yearLabelEl.setAttribute("for", "year-released");
   yearLabelEl.textContent = "Year:";
 
   // Create the select element
   const yearSelectEl = document.createElement("select");
-  yearSelectEl.setAttribute("id", "genre-names");
+  yearSelectEl.setAttribute("id", "year-released");
 
   // Create and append option elements to the select element
   years.forEach((year) => {
@@ -388,5 +391,20 @@ function displayDialogBox() {
   $("#dialog").dialog({
     width: 800,
     position: { my: "top", at: "top+28%", of: window },
+    buttons: {
+      Filter: function () {
+        fetchFilteredMovies();
+        $(this).dialog("close");
+      },
+    },
   });
+}
+// -----------------------------------------------------------------------------------------------------------------------------
+// Retrieve value selected from drop down list
+
+function fetchFilteredMovies() {
+  const genre = document.getElementById("genre-names").value;
+  const year = document.getElementById("year-released").value;
+  const rating = document.getElementById("rating-names").value;
+  console.log(genre, "########");
 }
