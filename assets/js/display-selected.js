@@ -8,9 +8,6 @@ const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
 
-// const YT_API_KEY = "AIzaSyBkhpBJMBBVKSvH7G7xVFJjex3Q5bZc6o8";
-// const YT_API_BASE_URL = "https://www.googleapis.com/youtube/v3";
-
 const SearchQueryParam = document.location.search;
 let mediaId = SearchQueryParam.slice(17, SearchQueryParam.length);
 
@@ -286,7 +283,9 @@ function displaySelectedMedia(data) {
 
   // Add click event listners to trailer and watchlist buttons
 
-  trailerBtnEl.addEventListener("click", playTheTrailer(movieId));
+  trailerBtnEl.addEventListener("click", () => {
+    fetchTrailer(selectedMedia.id);
+  });
 
   saveBtnEl.addEventListener("click", () => {
     handleSaveBtn(selectedMedia.id);
@@ -370,24 +369,6 @@ function displayRecommendations(data) {
 
 displayRecommendations();
 
-// function playTheTrailer(title) {
-//   // // Create the dialog element if it doesn't already exist
-//   // if (!document.getElementById("dialog")) {
-//   //   const dialogEl = document.createElement("div");
-//   //   dialogEl.id = "dialog";
-//   //   dialogEl.title = "Trailer";
-//   //   // dialogEl.innerHTML = "<p>Trailer content goes here.</p>";
-//   //   document.body.appendChild(dialogEl);
-//   // }
-
-//   // // Initialize and open the dialog
-//   // $("#dialog").dialog({
-//   //   autoOpen: true,
-//   //   modal: true,
-//   // });
-//   console.log(title);
-// }
-
 // Save the media ID to local storage and load the watchlist page
 
 function handleSaveBtn(mediaId) {
@@ -404,4 +385,21 @@ function handleSaveBtn(mediaId) {
 
   const queryString = `../watchlist.html`;
   location.assign(queryString);
+}
+
+function fetchTrailer(movieId) {
+  console.log(movieId);
+
+  const apiURL = `${TMDB_API_BASE_URL}/movie/${movieId}/videos?api_key=${TMDB_API_KEY}`;
+
+  fetch(apiURL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log("MOVIE TRAILER:", data);
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+    });
 }
