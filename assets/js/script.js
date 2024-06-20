@@ -98,51 +98,6 @@ function displayTrending(data) {
 }
 
 // -----------------------------------------------------------------------------------------------------------------------------
-// FETCH MOVIE BY GENRE
-
-function fetchGenreIds() {
-  const apiURL = `${TMDB_API_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`;
-
-  fetch(apiURL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const genres = data.genres;
-      fetchMoviesByGenre(genres);
-    })
-    .catch((error) => {
-      console.error(`Error fetching data: ${error}`);
-    });
-}
-
-fetchGenreIds();
-
-function fetchMoviesByGenre(genres) {
-  genres.forEach((genre) => {
-    const movieGenreId = genre.id;
-    const movieGenreName = genre.name;
-
-    const apiURL = `${TMDB_API_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${movieGenreId}`;
-
-    const movieGenreSelected = "Comedy";
-    if (movieGenreName === movieGenreSelected) {
-      fetch(apiURL)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          const moviesByGenre = data.results;
-          fetchMoviesGenre(moviesByGenre);
-        })
-        .catch((error) => {
-          console.error(`Error fetching data: ${error}`);
-        });
-    }
-  });
-}
-
-// -----------------------------------------------------------------------------------------------------------------------------
 
 filterBtnEl.addEventListener("click", (event) => {
   event.preventDefault();
