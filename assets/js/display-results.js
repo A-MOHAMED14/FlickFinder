@@ -1,6 +1,8 @@
 // DOM elements
 const resultsEl = document.querySelector("#results");
 const searchFormEl = document.querySelector("#search-form");
+const filterBtnEl = document.querySelector("#filter-btn");
+const dialogEl = document.querySelector("#dialog");
 
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
