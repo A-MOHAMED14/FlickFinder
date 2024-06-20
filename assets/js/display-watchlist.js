@@ -61,7 +61,7 @@ function displaySavedMedia() {
 
     titleEl.textContent = title;
     ratingEl.textContent = `⭐ ${rating}`;
-    removeBtnEl.textContent = "Remove";
+    removeBtnEl.textContent = "X";
     removeBtnEl.setAttribute("data-id", savedMedia.id);
     posterImgEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
     posterImgEl.alt = title;
