@@ -67,6 +67,7 @@ function displaySavedMedia() {
     removeBtnEl.setAttribute("data-id", savedMedia.id);
     posterImgEl.src = `${TMDB_BASE_IMG_URL}/${posterPathURL}`;
     posterImgEl.alt = title;
+    posterImgEl.setAttribute("data-id", savedMedia.id);
 
     // Add content to the DOM elements
     savedMediaImgEl.append(posterImgEl);
@@ -80,7 +81,10 @@ function displaySavedMedia() {
     watchlistEl.append(savedMediaEl);
 
     savedMediaEl.setAttribute("style", "margin-bottom: 60px");
-    posterImgEl.setAttribute("style", "border-radius: 10px");
+    posterImgEl.setAttribute(
+      "style",
+      "border-radius: 10px ; transition: transform 0.3s ease"
+    );
     savedMediaInfoEl.setAttribute(
       "style",
       "display: flex; flex-direction: column; align-items: center; width: 200px"
@@ -118,6 +122,21 @@ function displaySavedMedia() {
         // Remove the media element from the DOM
         savedMediaEl.remove();
       }
+    });
+
+    posterImgEl.addEventListener("click", (event) => {
+      const uniqueId = event.target.getAttribute("data-id");
+
+      const queryString = `../media-selected.html?external_source=${uniqueId}`;
+      location.assign(queryString);
+    });
+
+    posterImgEl.addEventListener("mouseover", () => {
+      posterImgEl.style.transform = "scale(1.1)";
+    });
+
+    posterImgEl.addEventListener("mouseout", () => {
+      posterImgEl.style.transform = "scale(1)";
     });
   }
 }
