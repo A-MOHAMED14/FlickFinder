@@ -74,6 +74,8 @@ To access the live website, <a href="">click here</a>
 
 ## Key Features and Accomplishments
 
+- **Server-Side API Integration:** The app uses the TMDB API to fetch movie data, ensuring a rich and up-to-date movie database for users to explore.
+
 - **Trending Movies Display:** Showcasing trending movies on the home page provides users with popular recommendations, enhancing their browsing experience.
 
 - **Filter Functionality:** Users can filter search results based on specific criteria such as genre, release year, or rating, allowing for a more tailored and refined movie browsing experience.
