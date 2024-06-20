@@ -62,4 +62,8 @@ WHEN I click on a movie in the recommendations section
 THEN I am presented with detailed information about the clicked movie, including the option to add it to my watchlist and watch trailer
 ```
 
-#
+# Project Overview
+
+The goal of this project is to build a movie recommendation app that runs in the browser and features dynamically updated HTML and CSS. The Movie Recommendation App displays trending movies on the home page and allows users to search for movies by title. Users can view detailed information about selected movies, including title, tagline, release date, rating, runtime, country, genres, languages, and a brief overview.
+
+Users can add movies to their personal watchlist and view recommendations for similar movies. The app includes a search filter option, enabling users to refine search results by genre, release year, and rating. The design is fully responsive, ensuring a seamless user experience across various devices and screen sizes.
