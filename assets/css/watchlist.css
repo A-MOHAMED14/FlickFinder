@@ -75,6 +75,7 @@ nav #home-btn:hover {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 #watchlist-header {
@@ -95,13 +96,13 @@ nav #home-btn:hover {
 
 @media (max-width: 1060px) {
   #watchlist-section {
-    width: 500px;
+    width: 700px;
   }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 750px) {
   #watchlist-section {
-    width: 200px;
+    width: 300px;
   }
 
   header {
