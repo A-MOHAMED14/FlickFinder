@@ -37,3 +37,29 @@ I WANT to see recommendations for similar movies
 based on the selected movie
 to discover related content that aligns with my preferences.
 ```
+
+## Acceptance Criteria
+
+```
+GIVEN a movie recommendation app with a search bar and filter options
+
+WHEN I click on a filter button and select a genre, release year, and rating,
+THEN the app filters the search results based on the selected criteria and displays the filtered results accordingly
+
+WHEN I search for a movie
+THEN I am presented with a list of movies containing similar words in the title
+
+WHEN I view the details for a selected movie
+THEN I am presented with some details about the movie and options to add to watchlist and watch trailer
+
+WHEN I add a movie to the watchlist
+THEN the movie is saved to the "My Watchlist" page, and I can view all saved movies there
+
+WHEN I view the recommendations section for a selected movie
+THEN I am presented with a list of similar movies that I might also like based on the selected movie
+
+WHEN I click on a movie in the recommendations section
+THEN I am presented with detailed information about the clicked movie, including the option to add it to my watchlist and watch trailer
+```
+
+#
