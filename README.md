@@ -87,3 +87,25 @@ To access the live website, <a href="">click here</a>
 - **Recommendations Section:** Displaying similar movies based on the selected movie enhances user exploration and encourages further discovery of relevant content.
 
 - **Responsive Design:** The app is designed to be fully responsive, offering optimal performance and usability across various devices and screen sizes.
+
+## Website Preview
+
+### Home Page:
+
+![website preview snippet](./assets/images/screenshots/home-page.png)
+
+### Search Results Page:
+
+![website preview snippet](./assets/images/screenshots/search-results-page.png)
+
+### Movie selected page:
+
+![website preview snippet](./assets/images/screenshots/movie-selected.png)
+
+### Watch List Page:
+
+![website preview snippet](./assets/images/screenshots/watch-list.png)
+
+### Project wireframes:
+
+![website preview snippet](./assets/images/screenshots/wireframe-screenshot.png)
