@@ -102,7 +102,6 @@ function displayResults(data) {
       "margin: 10px 0px; color: grey; font-size: 1.25rem"
     );
 
-    // ----------------------------------------------------------------------------------
     // RESPONSIVE DESIGN USING MEDIA QUERIES
 
     // Create a CSS class for the media query
@@ -125,16 +124,12 @@ function displayResults(data) {
 
     document.head.appendChild(style);
 
-    // ----------------------------------------------------------------------------------
-
     // Change flex direction
-
     function alterFlexDirection() {
       resultContainerEl.classList.add("results-element-container");
     }
 
     // Update flex direction based on screen width
-
     function updateFlexDirection() {
       const screenWidth = window.innerWidth;
 
@@ -150,8 +145,6 @@ function displayResults(data) {
 
     // Update flex direction when the window is resized
     window.addEventListener("resize", updateFlexDirection);
-
-    // ----------------------------------------------------------------------------------
 
     // Apply character limit for overview text
     function applyCharacterLimit(element, maxChars) {
@@ -196,8 +189,6 @@ function displayResults(data) {
     // Update the overview text when the window is resized
     window.addEventListener("resize", updateOverviewText);
 
-    // ----------------------------------------------------------------------------------
-
     // Add click event to movie title for redirection
 
     searchedResultTitleEl.addEventListener("click", (event) => {
@@ -214,8 +205,6 @@ function handleSearchFormSubmit(event) {
 
   const searchInputVal = document.querySelector("#search-field").value;
 
-  console.log(searchInputVal, "<-----");
-
   if (!searchInputVal) {
     console.error("You need a search input value!");
     return;
@@ -230,15 +219,12 @@ function handleSearchFormSubmit(event) {
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);
 
 function handleMediaSelected(uniqueId) {
-  console.log(uniqueId, "<======");
-
   const queryString = `../media-selected.html?external_source=${uniqueId}`;
   location.assign(queryString);
 }
 
-// -----------------------------------------------------------------------------------------------------------------------------
 // FILTER BUTTON FUNCTIONALITY
- 
+
 filterBtnEl.addEventListener("click", (event) => {
   event.preventDefault();
   displayDialogBox();
@@ -415,7 +401,6 @@ function displayDialogBox() {
   });
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------
 function fetchGenreIds() {
   const apiURL = `${TMDB_API_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`;
 
@@ -429,7 +414,6 @@ function fetchGenreIds() {
     });
 }
 
-// -------------------------------------------------------------------------------------------------------------------------
 // Retrieve value selected from drop down list and use them to fetch filtered movies
 
 function fetchFilteredMovies() {
