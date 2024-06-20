@@ -71,3 +71,19 @@ Users can add movies to their personal watchlist and view recommendations for si
 ## Live Demo
 
 To access the live website, <a href="">click here</a>
+
+## Key Features and Accomplishments
+
+- **Trending Movies Display:** Showcasing trending movies on the home page provides users with popular recommendations, enhancing their browsing experience.
+
+- **Filter Functionality:** Users can filter search results based on specific criteria such as genre, release year, or rating, allowing for a more tailored and refined movie browsing experience.
+
+- **Search Functionality:** Users can search for movies using the search bar, allowing them to discover new content based on their interests.
+
+- **Detailed Movie Information:** Providing comprehensive details about selected movies, including title, tagline, release date, rating, and runtime, enhances user engagement and decision-making.
+
+- **Watchlist Feature:** Users can add movies to a watchlist for later viewing, ensuring easy tracking and management of movie preferences.
+
+- **Recommendations Section:** Displaying similar movies based on the selected movie enhances user exploration and encourages further discovery of relevant content.
+
+- **Responsive Design:** The app is designed to be fully responsive, offering optimal performance and usability across various devices and screen sizes.
