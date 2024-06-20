@@ -109,3 +109,7 @@ To access the live website, <a href="">click here</a>
 ### Project wireframes:
 
 ![website preview snippet](./assets/images/screenshots/wireframe-screenshot.png)
+
+## Code Preview
+
+![code preview snippet](./assets/images/screenshots/code-screenshot.png)
