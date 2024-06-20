@@ -4,11 +4,9 @@ const watchlistEl = document.querySelector("#watchlist");
 // GLOBAL VARIABLES
 const TMDB_API_KEY = "7b928560fcfa8991abeaa28e946a0252";
 const TMDB_API_BASE_URL = "https://api.themoviedb.org/3";
-const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w200";
+const TMDB_BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
 
 let responseArr = [];
-
-// localStorage.clear();
 
 async function fetchMediaDetails() {
   // Get media ID from local storage
@@ -87,21 +85,31 @@ function displaySavedMedia() {
     );
     savedMediaInfoEl.setAttribute(
       "style",
-      "display: flex; flex-direction: column; align-items: center; width: 200px"
+      "display: flex; flex-direction: column; align-items: center; width: 300px; margin-top: 20px;  gap: 10px"
     );
     titleEl.setAttribute(
       "style",
-      "margin-top: 10px; text-align: center; font-size: 1.25rem"
+      "margin-top: 10px; text-align: center; font-size: 1.75rem"
     );
     ratingEl.setAttribute(
       "style",
-      "color: grey; margin-top: 10px; font-size: 1.1rem"
+      "color: grey; margin-top: 10px; font-size: 1.25rem"
     );
 
     removeBtnEl.setAttribute(
       "style",
-      "margin-top: 20px; padding: 5px 7px; font-weight: bold; color: black; background-color: rgb(90, 223, 176); border: none; border-radius: 5px "
+      "margin-top: 20px; padding: 5px 7px; font-weight: bold; color: black; background-color: rgb(90, 223, 176); border: none; border-radius: 5px; font-size: 1.1rem "
     );
+
+    removeBtnEl.addEventListener("mouseover", () => {
+      removeBtnEl.style.color = "white";
+      removeBtnEl.style.backgroundColor = "rgb(50, 124, 98)";
+    });
+
+    removeBtnEl.addEventListener("mouseout", () => {
+      removeBtnEl.style.color = "black";
+      removeBtnEl.style.backgroundColor = "rgb(90, 223, 176)";
+    });
 
     removeBtnEl.addEventListener("click", () => {
       let mediaIdArr = JSON.parse(localStorage.getItem("searchedmedia"));
