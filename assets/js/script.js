@@ -1,4 +1,4 @@
-// DOM elements
+// DOM ELEMENTS
 const searchFormEl = document.querySelector("#search-form");
 const filterBtnEl = document.querySelector("#filter-btn");
 const dialogEl = document.querySelector("#dialog");
@@ -54,36 +54,35 @@ function displayTrending(data) {
     const title = moviesArr[i].title;
     const mediaId = moviesArr[i].id;
 
+    // Creating elements for each trending movie
     const posterEl = document.createElement("img");
     const trendingCard = document.createElement("div");
     const titleEl = document.createElement("p");
 
+    // Setting attributes and content
     posterEl.src = `${TMDB_BASE_IMG_URL}${posterPath}`;
     posterEl.alt = title;
     posterEl.setAttribute("data-id", mediaId);
-
     titleEl.textContent = title;
 
     trendingCard.append(posterEl);
     trendingCard.append(titleEl);
-
     trendingWeekEl.append(trendingCard);
 
+    // Applying styles and event listeners
     trendingCard.setAttribute(
       "style",
       "width: 200px;text-align: center; margin: 30px"
     );
-
     posterEl.setAttribute(
       "style",
       "border-radius: 10px; transition: transform 0.3s ease"
     );
-
     titleEl.setAttribute("style", "margin-top: 15px");
 
+    // Event listeners for poster hover and click
     posterEl.addEventListener("click", (event) => {
       const uniqueId = event.target.getAttribute("data-id");
-
       handleMovieSelected(uniqueId);
     });
 
@@ -97,8 +96,7 @@ function displayTrending(data) {
   }
 }
 
-// -----------------------------------------------------------------------------------------------------------------------------
-
+// Event listener for filter button click
 filterBtnEl.addEventListener("click", (event) => {
   event.preventDefault();
   displayDialogBox();
@@ -129,15 +127,15 @@ function displayDialogBox() {
     "Western",
   ];
 
-  // Create the form element
+  // Create form element
   const filterFormEl = document.createElement("form");
 
-  // Create the label element
+  // Create label element
   const genreLabelEl = document.createElement("label");
   genreLabelEl.setAttribute("for", "genre-names");
   genreLabelEl.textContent = "Genre:";
 
-  // Create the select element
+  // Create select element
   const genreSelectEl = document.createElement("select");
   genreSelectEl.setAttribute("id", "genre-names");
 
@@ -153,9 +151,7 @@ function displayDialogBox() {
   filterFormEl.append(genreLabelEl);
   filterFormEl.append(genreSelectEl);
 
-  // -----------------------------------------------------------------------------------------------------------------------------
   // Years dropdown
-
   const years = [
     "-",
     1990,
@@ -195,16 +191,13 @@ function displayDialogBox() {
     2024,
   ];
 
-  // Create the label element
   const yearLabelEl = document.createElement("label");
   yearLabelEl.setAttribute("for", "year-released");
   yearLabelEl.textContent = "Year:";
 
-  // Create the select element
   const yearSelectEl = document.createElement("select");
   yearSelectEl.setAttribute("id", "year-released");
 
-  // Create and append option elements to the select element
   years.forEach((year) => {
     const genreOptionEl = document.createElement("option");
     genreOptionEl.setAttribute("value", year);
@@ -212,29 +205,23 @@ function displayDialogBox() {
     yearSelectEl.append(genreOptionEl);
   });
 
-  // Append the label and select elements to the form
   filterFormEl.append(yearLabelEl);
   filterFormEl.append(yearSelectEl);
 
-  // Ensure dialogEl is properly referenced
-  dialogEl.innerHTML = ""; // Clear previous content if any
+  // Clear previous content
+  dialogEl.innerHTML = "";
   dialogEl.append(filterFormEl);
 
-  // -----------------------------------------------------------------------------------------------------------------------------
   // Ratings dropdown
-
   const ratings = ["-", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  // Create the label element
   const ratingLabelEl = document.createElement("label");
   ratingLabelEl.setAttribute("for", "movie-ratings");
   ratingLabelEl.textContent = "Rating:";
 
-  // Create the select element
   const ratingSelectEl = document.createElement("select");
   ratingSelectEl.setAttribute("id", "movie-ratings");
 
-  // Create and append option elements to the select element
   ratings.forEach((rating) => {
     const genreOptionEl = document.createElement("option");
     genreOptionEl.setAttribute("value", rating);
@@ -242,12 +229,9 @@ function displayDialogBox() {
     ratingSelectEl.append(genreOptionEl);
   });
 
-  // Append the label and select elements to the form
   filterFormEl.append(ratingLabelEl);
   filterFormEl.append(ratingSelectEl);
 
-  // -----------------------------------------------------------------------------------------------------------------------------
-  // Clear previous content
   dialogEl.innerHTML = "";
   dialogEl.append(filterFormEl);
 
@@ -275,7 +259,6 @@ function displayDialogBox() {
   });
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------
 function fetchGenreIds() {
   const apiURL = `${TMDB_API_BASE_URL}/genre/movie/list?api_key=${TMDB_API_KEY}`;
 
@@ -289,9 +272,7 @@ function fetchGenreIds() {
     });
 }
 
-// -------------------------------------------------------------------------------------------------------------------------
 // Retrieve value selected from drop down list and use them to fetch filtered movies
-
 function fetchFilteredMovies() {
   const genreSelected = document.querySelector("#genre-names").value;
   const yearSelected = document.querySelector("#year-released").value;
@@ -330,8 +311,6 @@ function fetchFilteredMovies() {
     }
   });
 }
-
-// -------------------------------------------------------------------------------------------------------------------------
 
 function displayFilteredMovies(data) {
   document.querySelector("#trending-container").innerHTML = "";
@@ -373,7 +352,6 @@ function displayFilteredMovies(data) {
     resultsEl.append(resultContainerEl);
 
     // Apply styles to the results elements
-
     resultContainerEl.setAttribute(
       "style",
       "display: flex; background-color: rgb(59, 59, 59); border: 2px solid rgb(124, 124, 124); border-radius: 7px; margin: 15px 0px; padding: 15px; box-shadow: 1px 1px 5px rgb(90, 223, 176)"
@@ -402,7 +380,6 @@ function displayFilteredMovies(data) {
       "margin: 10px 0px; color: grey; font-size: 1.25rem"
     );
 
-    // ----------------------------------------------------------------------------------
     // RESPONSIVE DESIGN USING MEDIA QUERIES
 
     // Create a CSS class for the media query
@@ -425,16 +402,12 @@ function displayFilteredMovies(data) {
 
     document.head.appendChild(style);
 
-    // ----------------------------------------------------------------------------------
-
     // Change flex direction
-
     function alterFlexDirection() {
       resultContainerEl.classList.add("results-element-container");
     }
 
     // Update flex direction based on screen width
-
     function updateFlexDirection() {
       const screenWidth = window.innerWidth;
 
@@ -450,8 +423,6 @@ function displayFilteredMovies(data) {
 
     // Update flex direction when the window is resized
     window.addEventListener("resize", updateFlexDirection);
-
-    // ----------------------------------------------------------------------------------
 
     // Apply character limit for overview text
     function applyCharacterLimit(element, maxChars) {
@@ -496,10 +467,7 @@ function displayFilteredMovies(data) {
     // Update the overview text when the window is resized
     window.addEventListener("resize", updateOverviewText);
 
-    // ----------------------------------------------------------------------------------
-
     // Add click event to filtered movie title for redirection
-
     searchedResultTitleEl.addEventListener("click", (event) => {
       const uniqueId = event.target.getAttribute("data-id");
 
@@ -508,6 +476,7 @@ function displayFilteredMovies(data) {
   }
 }
 
+// Function to handle movie selection and redirection
 function handleMovieSelected(uniqueId) {
   const queryString = `../media-selected.html?external_source=${uniqueId}`;
   location.assign(queryString);
