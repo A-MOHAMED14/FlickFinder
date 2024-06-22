@@ -210,7 +210,7 @@ function handleSearchFormSubmit(event) {
     return;
   }
 
-  const queryString = `../search-results.html?query=${searchInputVal}`;
+  const queryString = `search-results.html?query=${searchInputVal}`;
 
   location.assign(queryString);
   fetchMedia();
@@ -219,7 +219,7 @@ function handleSearchFormSubmit(event) {
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);
 
 function handleMediaSelected(uniqueId) {
-  const queryString = `../media-selected.html?external_source=${uniqueId}`;
+  const queryString = `media-selected.html?external_source=${uniqueId}`;
   location.assign(queryString);
 }
 
@@ -279,7 +279,6 @@ function displayDialogBox() {
   filterFormEl.append(genreLabelEl);
   filterFormEl.append(genreSelectEl);
 
-  // -----------------------------------------------------------------------------------------------------------------------------
   // Years dropdown
 
   const years = [
@@ -346,7 +345,6 @@ function displayDialogBox() {
   dialogEl.innerHTML = ""; // Clear previous content if any
   dialogEl.append(filterFormEl);
 
-  // -----------------------------------------------------------------------------------------------------------------------------
   // Ratings dropdown
 
   const ratings = ["-", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -372,7 +370,6 @@ function displayDialogBox() {
   filterFormEl.append(ratingLabelEl);
   filterFormEl.append(ratingSelectEl);
 
-  // -----------------------------------------------------------------------------------------------------------------------------
   // Clear previous content
   dialogEl.innerHTML = "";
   dialogEl.append(filterFormEl);

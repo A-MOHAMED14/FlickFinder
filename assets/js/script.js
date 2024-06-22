@@ -20,7 +20,7 @@ function handleSearchFormSubmit(event) {
     return;
   }
 
-  const queryString = `../search-results.html?query=${searchInputVal}`;
+  const queryString = `search-results.html?query=${searchInputVal}`;
 
   location.assign(queryString);
 }
@@ -478,6 +478,6 @@ function displayFilteredMovies(data) {
 
 // Function to handle movie selection and redirection
 function handleMovieSelected(uniqueId) {
-  const queryString = `../media-selected.html?external_source=${uniqueId}`;
+  const queryString = `media-selected.html?external_source=${uniqueId}`;
   location.assign(queryString);
 }

@@ -379,7 +379,7 @@ function handleSaveBtn(mediaId) {
     }
   }
 
-  const queryString = `../watchlist.html`;
+  const queryString = `watchlist.html`;
   location.assign(queryString);
 }
 

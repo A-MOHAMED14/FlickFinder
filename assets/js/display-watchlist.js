@@ -135,7 +135,7 @@ function displaySavedMedia() {
     posterImgEl.addEventListener("click", (event) => {
       const uniqueId = event.target.getAttribute("data-id");
 
-      const queryString = `../media-selected.html?external_source=${uniqueId}`;
+      const queryString = `media-selected.html?external_source=${uniqueId}`;
       location.assign(queryString);
     });
 
