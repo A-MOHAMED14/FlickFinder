@@ -70,7 +70,7 @@ Users can add movies to their personal watchlist and view recommendations for si
 
 ## Live Demo
 
-To access the live website, <a href="">click here</a>
+To access the live website, <a href="https://a-mohamed14.github.io/Movie-Recommendation-App/">click here</a>
 
 ## Key Features and Accomplishments
 
