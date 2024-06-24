@@ -4,6 +4,10 @@
 
 This application recommends movies based on user preferences and trending movies.
 
+## Live Demo
+
+To access the live website, <a href="https://a-mohamed14.github.io/Movie-Recommendation-App/">click here</a>
+
 ## User Story
 
 ```
@@ -67,10 +71,6 @@ THEN I am presented with detailed information about the clicked movie, including
 The goal of this project is to build a movie recommendation app that runs in the browser and features dynamically updated HTML and CSS. The Movie Recommendation App displays trending movies on the home page and allows users to search for movies by title. Users can view detailed information about selected movies, including title, tagline, release date, rating, runtime, country, genres, languages, and a brief overview.
 
 Users can add movies to their personal watchlist and view recommendations for similar movies. The app includes a search filter option, enabling users to refine search results by genre, release year, and rating. The design is fully responsive, ensuring a seamless user experience across various devices and screen sizes.
-
-## Live Demo
-
-To access the live website, <a href="https://a-mohamed14.github.io/Movie-Recommendation-App/">click here</a>
 
 ## Key Features and Accomplishments
 
