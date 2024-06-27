@@ -90,6 +90,14 @@ Users can add movies to their personal watchlist and view recommendations for si
 
 - **Responsive Design:** The app is designed to be fully responsive, offering optimal performance and usability across various devices and screen sizes.
 
+<br>
+
+## Video Demonstration
+
+Below is a video walk through demonstrating the functionality of this project:
+
+[![Watch the video](./assets/images/screenshots/demo-thumbnail.png)](https://drive.google.com/file/d/1dUVuKW38EPplQiEPOA5yw8fFVvQwL3O9/view)
+
 ## Website Preview
 
 ### Home Page:
